@@ -3,8 +3,10 @@
 ## **In-Game Actions**
 - move piece
 - move opponents piece
-- capture piece
+- validate move
+- jump piece
 - promote piece
+- show available moves
 
 ## **Meta Game Actions**
 - choose starting player
@@ -26,46 +28,75 @@
 Primary Actor: Player
 Iteration: 1
 Goal in Context: Move one of the player's pieces
-Precondition:
-Trigger:
+Precondition: It is the player's turn
+Trigger: The movePiece() function is called by from the GUI
 Scenario:
-Post Condition:
-Exceptions:
-Priority:
-When Available:
-Frequency of Use:
-Channel to Actor:
-Secondary Actors:
-Open Issues:
+  1. the player moves their piece in the GUI
+  2. a movePiece() function is called
+  3. the game checks if the move is allowed, or a piece has been jumped and updates the game state accordingly
+  4. if the move is allowed, it is sent to the opponents game
+Post Condition: the game checks if the move is allowed (see validate move)
+Exceptions: N/A
+Priority: Very High
+When Available: Iteration 1
+Frequency of Use: Very Often 
+Secondary Actors: Opponent
+Channel to Actor: The GUI interfacing the game
+Open Issues: N/A
 
 
 ## Use Case: Move Opponent Piece
-Primary Actor:
-Iteration:
-Goal in Context:
-Precondition:
-Trigger:
+Primary Actor: Opponent
+Iteration: 1
+Goal in Context: Update the game with the opponents move
+Precondition: it is the opponents turn
+Trigger: the network code calls a moveOpponent() function
 Scenario:
-Post Condition:
-Exceptions:
-Priority:
-When Available:
-Frequency of Use:
-Channel to Actor:
-Secondary Actors:
+  1. the network code recieves a move from the opponent player's computer
+  2. some moveOpponent() function is called
+  3. the game checks if the move is allowed or a piece has been jumped, and updates the game state accordingly
+  4. tell the GUI to redraw the new game state
+Post Condition: the game checks if the move is allowed (see validate move)
+Exceptions: invalid move
+Priority: Very High
+When Available: Iteration 1
+Frequency of Use: Very Often
+Channel to Actor: The Network Code/Internet
+Secondary Actors: Player
 Open Issues:
+  - what happens if the received move is invalid (i.e. the opponent is cheating/modding)
 
-
-## Use Case: Capture Piece
-Primary Actor:
-Iteration:
-Goal in Context:
-Precondition:
-Trigger:
+## Use Case: Validate Move
+Primary Actor: Player or Opponent
+Iteration: 1
+Goal in Context: Make sure an attempted move follows the rules
+Precondition: the player or opponent tries to move a piece
+Trigger: 
 Scenario:
+  1. a player move a game piece, calling move()/moveOpponent()
+  2. the game checks if the move is allowed
+  3. the result of the check is returned to the movement code
+Post Condition: 
+Exceptions: N/A
+Priority: Very High
+When Available: Iteration 1 (more complex rules can be implemented later)
+Frequency of Use: Very Often
+Channel to Actor: The GUI/network code
+Secondary Actors: N/A
+Open Issues: N/A
+
+
+## Use Case: Jump Piece
+Primary Actor: Player or Opponent
+Iteration: 1
+Goal in Context: Jump one players piece over the other's, and remove the jumped piece from the board
+Precondition: it is the correct player's turn
+Trigger: the player/opponent moves more than 1 space
+Scenario: 
+  1. 
 Post Condition:
-Exceptions:
-Priority:
+Exceptions: 
+Priority: Very High
 When Available:
 Frequency of Use:
 Channel to Actor:
@@ -88,6 +119,24 @@ Frequency of Use:
 Channel to Actor:
 Secondary Actors:
 Open Issues:
+
+
+## Use Case: Show Available Moves
+Primary Actor: Player or Opponent
+Iteration: 1
+Goal in Context: Jump one players piece over the other's, and remove the jumped piece from the board
+Precondition: it is the correct player's turn
+Trigger: the player/opponent moves more than 1 space
+Scenario:
+Post Condition:
+Exceptions:
+Priority:
+When Available:
+Frequency of Use:
+Channel to Actor:
+Secondary Actors:
+Open Issues:
+
 
 
 ## Use Case: Choose Starting Player
