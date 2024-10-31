@@ -1,12 +1,10 @@
 *this should be converted to a pdf before submission*
 
-
 ## **In-Game Actions**
 - move piece
 - move opponents piece
 - capture piece
 - promote piece
-
 
 ## **Meta Game Actions**
 - choose starting player
@@ -23,10 +21,11 @@
 - receive chat message
 - disconnect from game
 
+
 ## Use Case: Move Piece
-Primary Actor:
-Iteration:
-Goal in Context:
+Primary Actor: Player
+Iteration: 1
+Goal in Context: Move one of the player's pieces
 Precondition:
 Trigger:
 Scenario:
