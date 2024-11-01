@@ -90,7 +90,7 @@ opponent selection or will this be implemented by some other system done before 
 **Open Issues:**
 
 
-### Use case: Game Won
+### Use case: Game Won (Checkmate)
 **Iteration:** 1
 
 **Primary actor:** Player
@@ -180,7 +180,7 @@ If not then the quit game button can function as the exit button
 * The player is able to move a piece into a square occupied by an enemy piece during their turn  
 
 **Trigger:** The player moves one of their pieces into a square occupied by an enemy piece  
-**Scenario:**
+**Scenario:**  
 1. The piece occupying the space should be replaced by the piece being moved
 2. The piece removed should be tallied
 3. Game should check the game state
@@ -201,7 +201,7 @@ If not then the quit game button can function as the exit button
 * The player is able to move a pawn into the last row of the board
 
 **Trigger:** The player moves one of their pawns into a square on the end row of the board
-**Scenario:**
+**Scenario:**  
 1. The pawn should be removed from the board
 2. The player should be prompted to choose a new type of piece
 3. The new piece should be located in the same square the pawn was removed from
@@ -213,3 +213,23 @@ If not then the quit game button can function as the exit button
 
 **Channel to actor:** Graphical Representation of the game board
 **Open Issues:** N/A
+
+
+## Use Case: Check
+**Iteration:** 1  
+**Primary Actor:** Player  
+**Goal in context:** Show that a player is in check
+**Preconditions**:
+* The game is in play mode
+* The player is able to move a piece into a square occupied by an enemy king.
+
+**Trigger:** The player moves one of their pieces into a square where it can now move into a square occupied by the enemy king   
+**Scenario:**
+1. The players should notified that a player is in check and indicate the checked king
+
+**Exceptions:**  
+**Post Conditions:**
+* The player who is now in check should only be able to move their king out of check or move a piece into the path of the checking piece
+
+**Channel to actor:** Graphical Representation of the game board
+**Open Issues:**
