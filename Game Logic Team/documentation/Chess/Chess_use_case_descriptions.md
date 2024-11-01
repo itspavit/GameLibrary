@@ -171,3 +171,45 @@ If not then the quit game button can function as the exit button
 * how will the stats be displayed when the game ends, If it is through an overlay popup or by going to a different GUI scene then there would need to be an exit button,
   If not then the quit game button can function as the exit button
 
+## Use Case: Capture
+**Iteration:** 1  
+**Primary Actor:** Player  
+**Goal in context:** Show that a chess piece has been captured
+**Preconditions**:  
+* The game is in play mode
+* The player is able to move a piece into a square occupied by an enemy piece during their turn  
+
+**Trigger:** The player moves one of their pieces into a square occupied by an enemy piece  
+**Scenario:**
+1. The piece occupying the space should be replaced by the piece being moved
+2. The piece removed should be tallied
+3. Game should check the game state
+
+**Exceptions:**
+**Post Conditions:**
+* The piece that previously existed in the space has been removed from the board and been replaced by the moved piece
+
+**Channel to actor:** Graphical Representation of the game board
+**Open Issues:** N/A
+
+## Use Case: Promotion
+**Iteration:** 1  
+**Primary Actor:** Player  
+**Goal in context:** Promote a pawn to a piece of the players choice
+**Preconditions**:
+* The game is in play mode
+* The player is able to move a pawn into the last row of the board
+
+**Trigger:** The player moves one of their pawns into a square on the end row of the board
+**Scenario:**
+1. The pawn should be removed from the board
+2. The player should be prompted to choose a new type of piece
+3. The new piece should be located in the same square the pawn was removed from
+4. The game state should be checked
+
+**Exceptions:**
+**Post Conditions:**
+* The pawn that previously existed in the space has been removed from the board and been replaced by the chosen piece
+
+**Channel to actor:** Graphical Representation of the game board
+**Open Issues:** N/A
