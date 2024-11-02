@@ -1,6 +1,7 @@
 *this should be converted to a pdf before submission*
 
-## **In-Game Actions**
+## Overview
+### **In-Game Actions**
 - move piece
 - move opponents piece
 - validate move
@@ -8,7 +9,8 @@
 - promote piece
 - show available moves
 
-## **Meta Game Actions**
+### **Meta Game Actions**
+- start game
 - choose starting player
 - rematch
 - win
@@ -16,15 +18,16 @@
 - forfeit
 - opponent forfeits
 
-## **Non-Game Actions**
+### **Non-Game Actions**
 *these could probably be done outside the game itself, so theyre available/work consistently/globally*
 *but idk so ill leave them here for now*
 - send chat message
 - receive chat message
 - disconnect from game
 
+## In Game
 
-## Use Case: Move Piece
+### Use Case: Move Piece
 Primary Actor: Player
 
 Iteration: 1
@@ -58,7 +61,7 @@ Channel to Actor: The GUI interfacing the game
 Open Issues: N/A
 
 
-## Use Case: Move Opponent Piece
+### Use Case: Move Opponent Piece
 Primary Actor: Opponent
 
 Iteration: 1
@@ -92,7 +95,7 @@ Secondary Actors: Player
 Open Issues:
   - what happens if the received move is invalid (i.e. the opponent is cheating/modding)
 
-## Use Case: Validate Move
+### Use Case: Validate Move
 Primary Actor: Player or Opponent
 
 Frequency of Use: Incredibly often, a lot of times per game
@@ -127,7 +130,7 @@ Secondary Actors: N/A
 Open Issues: N/A
 
 
-## Use Case: Jump Piece
+### Use Case: Jump Piece
 Primary Actor: Player or Opponent
 
 Iteration: 1
@@ -160,7 +163,7 @@ Secondary Actors: N/A
 Open Issues: N/A
  
 
-## Use Case: Promote Piece
+### Use Case: Promote Piece
 Primary Actor: Player or Opponent
 
 Iteration: 1
@@ -181,7 +184,7 @@ Exceptions: N/A
 
 Priority: High 
 
-When Available: iteration 1, once the other basic rules have been implemented
+When Available: Iteration 1, once the other basic rules have been implemented
 
 Frequency of Use: A few times per game
 
@@ -192,38 +195,75 @@ Secondary Actors: N/A
 Open Issues: N/A
 
 
-## Use Case: Show Available Moves
+### Use Case: Show Available Moves
 Primary Actor: Player 
 
 Iteration: 2
 
-Goal in Context: 
+Goal in Context: Show where a piece cam move on the board
 
-Precondition: 
+Precondition: It is the players turn
 
-Trigger: 
+Trigger: The player selects a game piece
 
 Scenario:
+  1. the player chooses what piece they wan to move
+  2. all legal moves for that piece are highlighted on the board
+  3. if the player selects a legal move the pice gets moved, otherwise it deselects the piece
 
-Post Condition:
+Post Condition: The player can select where they want to move the piece
 
-Exceptions:
+Exceptions: N/A
 
-Priority:
+Priority: mid-low
 
-When Available:
+When Available: once all the game rules and systems are already working
 
-Frequency of Use:
+Frequency of Use: a few times per game turn
 
-Channel to Actor:
+Channel to Actor: The GUI 
 
-Secondary Actors:
+Secondary Actors: N/A
 
-Open Issues:
+Open Issues: N/A
 
 
+## Meta Game 
 
-## Use Case: Choose Starting Player
+### Use Case: Start Game
+Primary Actor: Player and Opponent
+
+Iteration: 1
+
+Goal in Context: start a new game of checkers
+
+Precondition: both players have opened the game, and start a game with the matchmaking system
+
+Trigger: the matchmaking system creates a match with the player and opponent
+
+Scenario:
+  1. the player and opponent with similar skill levels both look for a new match in the matchmaking system
+  2. the matchmaking system see's that have a similar skill ranking, and pairs them together
+  3. the matchmaking system creates a new game between the player and opponent
+
+Post Condition: The player and opponent can play checkers against each other
+
+Exceptions: N/A
+
+Priority: High
+
+When Available: Iteration 1, will likely be the 1st thing implemented
+
+Frequency of Use: once per game
+
+Channel to Actor: GUI/Network code
+
+Secondary Actors: N/A
+
+Open Issues: N/A
+
+
+### Use Case: Choose Starting Player
 Primary Actor:
 
 Iteration:
@@ -253,7 +293,7 @@ Secondary Actors:
 Open Issues:
 
 
-## Use Case: Rematch
+### Use Case: Rematch
 Primary Actor:
 
 Iteration:
@@ -283,7 +323,7 @@ Secondary Actors:
 Open Issues:
 
 
-## Use Case: Win
+### Use Case: Win
 Primary Actor:
 
 Iteration:
@@ -313,7 +353,7 @@ Secondary Actors:
 Open Issues:
 
 
-## Use Case: Lose
+### Use Case: Lose
 Primary Actor:
 
 Iteration:
@@ -343,7 +383,7 @@ Secondary Actors:
 Open Issues:
 
 
-## Use Case: Forfeit
+### Use Case: Forfeit
 Primary Actor:
 
 Iteration:
@@ -373,7 +413,7 @@ Secondary Actors:
 Open Issues:
 
 
-## Use Case: Opponent Forfeit
+### Use Case: Opponent Forfeit
 Primary Actor:
 
 Iteration:
@@ -403,7 +443,7 @@ Secondary Actors:
 Open Issues:
 
 
-## Use Case: Send Chat Message
+### Use Case: Send Chat Message
 Primary Actor:
 
 Iteration:
@@ -433,7 +473,7 @@ Secondary Actors:
 Open Issues:
 
 
-## Use Case: Receive Chat Message
+### Use Case: Receive Chat Message
 Primary Actor:
 
 Iteration:
@@ -463,7 +503,7 @@ Secondary Actors:
 Open Issues:
 
 
-## Use Case: Disconnect From Game
+### Use Case: Disconnect From Game
 Primary Actor:
 
 Iteration:
@@ -490,4 +530,4 @@ Channel to Actor:
 
 Secondary Actors:
 
-Open Issues:
+#Open Issues:
