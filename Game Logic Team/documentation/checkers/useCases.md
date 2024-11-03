@@ -22,7 +22,6 @@
 ### **Non-Game Actions**
 - send chat message
 - receive chat message
-- disconnect from game
 
 ## In Game
 
@@ -241,9 +240,9 @@ Precondition: both players have opened the game, and start a game with the match
 Trigger: the matchmaking system creates a match with the player and opponent
 
 Scenario:
-  1. the player and opponent with similar skill levels both look for a new match in the matchmaking system
-  2. the matchmaking system see's that have a similar skill ranking, and pairs them together
-  3. the matchmaking system creates a new game between the player and opponent
+  1. The player and opponent with similar skill levels both look for a new match in the matchmaking system
+  2. The matchmaking system see's that have a similar skill ranking, and pairs them together
+  3. The matchmaking system creates a new game between the player and opponent
 
 Post Condition: The player and opponent can play checkers against each other
 
@@ -341,9 +340,9 @@ Precondition: the game has ended from either a player either winning or forfeiti
 Trigger: 
 
 Scenario:
-  1. a player wins the game, and signals to show the ending screen
-  2. the end screen is shown, with the results of the game
-  3. the player is able to rematch or quit the game
+  1. A player wins the game, and signals to show the ending screen
+  2. The end screen is shown, with the results of the game
+  3. The player is able to rematch or quit the game
 
 Post Condition: the player see their results and can rematch or quit the game
 
@@ -374,10 +373,10 @@ Precondition: the player finished their move, and it is the opponents turn
 Trigger: the opponent has no pieces they can move on their turn
 
 Scenario:
-  1. the player jumps the opponent's last piece, or blocks all their moves
-  2. the opponent has no pieces they can move on their turn
-  4. the players win rating gets updated
-  5. the game complete screen is shown, letting them know they won
+  1. The player jumps the opponent's last piece, or blocks all their moves
+  2. The opponent has no pieces they can move on their turn
+  4. The players win rating gets updated
+  5. The game complete screen is shown, letting them know they won
 
 Post Condition: the results screen is shown (see game complete)
 
@@ -408,10 +407,10 @@ Precondition: the opponent has finished their move, and it is the player's turn
 Trigger: the player has no pieces they can move on their turn
 
 Scenario:
-  1. the opponent jumps the player's last piece, or blocks all their moves
-  2. the player has no pieces they can move on their turn
-  4. the players win rating gets updated
-  5. the game results screen is shown, letting them know they won
+  1. The opponent jumps the player's last piece, or blocks all their moves
+  2. The player has no pieces they can move on their turn
+  4. The players win rating gets updated
+  5. The game results screen is shown, letting them know they won
 
 Post Condition: the results screen is shown (see game complete)
 
@@ -442,10 +441,10 @@ Precondition: the player is playing a game with the opponent
 Trigger: the player clicks a forfeit button in the GUI
 
 Scenario:
-  1. the player wants to end the game, and clicks the forfeit button
-  2. the game is registered as a loss in the player's rating
-  3. the resignation is sent to the opponent, letting them know they've won
-  4. the game ends, and the player is sent to the result screen
+  1. The player wants to end the game, and clicks the forfeit button
+  2. The game is registered as a loss in the player's rating
+  3. The resignation is sent to the opponent, letting them know they've won
+  4. The game ends, and the player is sent to the result screen
 
 Post Condition: the results screen is shown (see game complete)
 
@@ -469,14 +468,14 @@ Primary Actor: Opponent
 
 Iteration: 2
 
-Goal in Context: tell the player that thier opponent has forfeited
+Goal in Context: tell the player that their opponent has forfeited
 
 Precondition: the player is playing a game with the opponent
 
 Trigger: the network code receives data saying that the opponent has forfeited
 
 Scenario:
-  1. the network code recieves data saying the opponent has forfeited
+  1. the network code receives data saying the opponent has forfeited
   2. the game is registered as a win in the player's rating
   3. the game ends, and the player is sent to the result screen
 
@@ -498,90 +497,70 @@ Open Issues: N/A
 
 
 ### Use Case: Send Chat Message
-Primary Actor:
+Primary Actor: Player
 
-Iteration:
+Iteration: 1
 
-Goal in Context:
+Goal in Context: let the player send a chat message to their opponent
 
-Precondition:
+Precondition: the player has been matched with an opponent 
 
-Trigger:
+Trigger: the player sends a message through the GUI
 
 Scenario:
+  1. the player types their message in the chat and presses enter
+  2. the message is sent though the network code and received by the opponent
+  3. the opponent sees the message in their game
 
-Post Condition:
+Post Condition: the opponent sees the players message
 
-Exceptions:
+Exceptions: 
+  - network errors
 
-Priority:
+Priority: high (in project outline document)
 
-When Available:
+When Available: iteration 1, after game logic
 
-Frequency of Use:
+Frequency of Use: infrequently to many times per game 
 
-Channel to Actor:
+Channel to Actor: GUI/Network code
 
-Secondary Actors:
+Secondary Actors: Opponent
 
 Open Issues:
+  - should there be any moderation/filtering in the chat
 
 
 ### Use Case: Receive Chat Message
-Primary Actor:
+Primary Actor: Opponent
 
-Iteration:
+Iteration: 1
 
-Goal in Context:
+Goal in Context: let the player receive chat messages from their opponent
 
-Precondition:
+Precondition: the player has been matched with an opponent 
 
-Trigger:
-
-Scenario:
-
-Post Condition:
-
-Exceptions:
-
-Priority:
-
-When Available:
-
-Frequency of Use:
-
-Channel to Actor:
-
-Secondary Actors:
-
-Open Issues:
-
-
-### Use Case: Disconnect From Game
-Primary Actor:
-
-Iteration:
-
-Goal in Context:
-
-Precondition:
-
-Trigger:
+Trigger: the network code receives a message from the opponent
 
 Scenario:
+  1. the network code recieves a message sent from the opponent
+  3. the game recieves the mesage, and displays it in the GUI for the player
 
-Post Condition:
+Post Condition: the player sees the opponent's message
 
-Exceptions:
+Exceptions: 
+  - network errors
 
-Priority:
+Priority: high (in project outline document)
 
-When Available:
+When Available: iteration 1, after game logic
 
-Frequency of Use:
+Frequency of Use: infrequently to many times per game 
 
-Channel to Actor:
+Channel to Actor: GUI/Network code
 
-Secondary Actors:
+Secondary Actors: Player
 
 Open Issues:
+  - should you be able to disable/block/filter the chat messages
+
