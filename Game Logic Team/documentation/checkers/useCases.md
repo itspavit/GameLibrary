@@ -411,7 +411,7 @@ Scenario:
   1. the opponent jumps the player's last piece, or blocks all their moves
   2. the player has no pieces they can move on their turn
   4. the players win rating gets updated
-  5. the game complete screen is shown, letting them know they won
+  5. the game results screen is shown, letting them know they won
 
 Post Condition: the results screen is shown (see game complete)
 
@@ -431,63 +431,70 @@ Open Issues: N/A
 
 
 ### Use Case: Forfeit
-Primary Actor:
+Primary Actor: Player
 
-Iteration:
+Iteration: 2
 
-Goal in Context:
+Goal in Context: let the player end the game before it reaches a win/lose state
 
-Precondition:
+Precondition: the player is playing a game with the opponent
 
-Trigger:
+Trigger: the player clicks a forfeit button in the GUI
 
 Scenario:
+  1. the player wants to end the game, and clicks the forfeit button
+  2. the game is registered as a loss in the player's rating
+  3. the resignation is sent to the opponent, letting them know they've won
+  4. the game ends, and the player is sent to the result screen
 
-Post Condition:
+Post Condition: the results screen is shown (see game complete)
 
-Exceptions:
+Exceptions: N/A
 
-Priority:
+Priority: Medium
 
-When Available:
+When Available: Iteration 2, after game rules have been completed
 
-Frequency of Use:
+Frequency of Use: low, up to once a game
 
-Channel to Actor:
+Channel to Actors: GUI/Network code
 
-Secondary Actors:
+Secondary Actors: Opponent
 
-Open Issues:
+Open Issues: N/A
 
 
 ### Use Case: Opponent Forfeit
-Primary Actor:
+Primary Actor: Opponent
 
-Iteration:
+Iteration: 2
 
-Goal in Context:
+Goal in Context: tell the player that thier opponent has forfeited
 
-Precondition:
+Precondition: the player is playing a game with the opponent
 
-Trigger:
+Trigger: the network code receives data saying that the opponent has forfeited
 
 Scenario:
+  1. the network code recieves data saying the opponent has forfeited
+  2. the game is registered as a win in the player's rating
+  3. the game ends, and the player is sent to the result screen
 
-Post Condition:
+Post Condition: the results screen is shown (see game complete)
 
-Exceptions:
+Exceptions: N/A
 
-Priority:
+Priority: Medium
 
-When Available:
+When Available: Iteration 2, after game rules have been completed
 
-Frequency of Use:
+Frequency of Use: low, up to once a game
 
-Channel to Actor:
+Channel to Actors: GUI/Network code
 
-Secondary Actors:
+Secondary Actors: Player
 
-Open Issues:
+Open Issues: N/A
 
 
 ### Use Case: Send Chat Message
