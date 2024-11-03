@@ -20,8 +20,6 @@
 - opponent forfeits
 
 ### **Non-Game Actions**
-*these could probably be done outside the game itself, so theyre available/work consistently/globally*
-*but idk so ill leave them here for now*
 - send chat message
 - receive chat message
 - disconnect from game
@@ -313,7 +311,7 @@ Scenario:
   1. The game of checkers ends, and the results screen is shown
   2. The player clicks the exit game button
   3. The opponents stops being allowed to rematch
-  3. The game is closed
+  4. The game is closed
 
 Post Condition: The game closes
 
@@ -338,31 +336,32 @@ Iteration: 1
 
 Goal in Context: show the player the results of the game, and give the option to rematch or exit
 
-Precondition: the player finishes making their move, and it is the opponents turn
+Precondition: the game has ended from either a player either winning or forfeiting
 
-Trigger: the opponent has no pieces they can move on their turn
+Trigger: 
 
 Scenario:
-  1. the player jumps the opponent's last piece, or blocks all their moves
-  2. the opponent has no pieces they can move on their turn
-  4. the players win rating gets updated
-  5. the game complete screen is shown, letting them know they won
+  1. a player wins the game, and signals to show the ending screen
+  2. the end screen is shown, with the results of the game
+  3. the player is able to rematch or quit the game
 
-Post Condition:
+Post Condition: the player see their results and can rematch or quit the game
 
-Exceptions:
+Exceptions: N/A
 
-Priority:
+Priority: High 
 
-When Available:
+When Available: iteration 1, after game rules are implemented
 
-Frequency of Use:
+Frequency of Use: once per game
 
-Channel to Actor:
+Channel to Actor: GUI
 
-Secondary Actors:
+Secondary Actors: N/A
 
-Open Issues:
+Open Issues: N/A
+
+
 ### Use Case: Win
 Primary Actor: Player
 
@@ -370,7 +369,7 @@ Iteration: 1
 
 Goal in Context: let the player know they won the game, and update their rating/statistics
 
-Precondition: the player finishes making their move, and it is the opponents turn
+Precondition: the player finished their move, and it is the opponents turn
 
 Trigger: the opponent has no pieces they can move on their turn
 
@@ -380,51 +379,55 @@ Scenario:
   4. the players win rating gets updated
   5. the game complete screen is shown, letting them know they won
 
-Post Condition:
+Post Condition: the results screen is shown (see game complete)
 
-Exceptions:
+Exceptions: N/A
 
-Priority:
+Priority: High
 
-When Available:
+When Available: Iteration 1, with other game rules implementation
 
-Frequency of Use:
+Frequency of Use: Up to once a game
 
-Channel to Actor:
+Channel to Actor: GUI
 
-Secondary Actors:
+Secondary Actors: N/A
 
-Open Issues:
+Open Issues: N/A
 
 
 ### Use Case: Lose
-Primary Actor:
+Primary Actor: Opponent
 
-Iteration:
+Iteration: 1
 
-Goal in Context:
+Goal in Context: let the player know they lost the game, and update their rating/statistics
 
-Precondition:
+Precondition: the opponent has finished their move, and it is the player's turn
 
-Trigger:
+Trigger: the player has no pieces they can move on their turn
 
 Scenario:
+  1. the opponent jumps the player's last piece, or blocks all their moves
+  2. the player has no pieces they can move on their turn
+  4. the players win rating gets updated
+  5. the game complete screen is shown, letting them know they won
 
-Post Condition:
+Post Condition: the results screen is shown (see game complete)
 
-Exceptions:
+Exceptions: N/A
 
-Priority:
+Priority: High
 
-When Available:
+When Available: Iteration 1, with other game rules implementation
 
-Frequency of Use:
+Frequency of Use: Up to once a game
 
-Channel to Actor:
+Channel to Actor: GUI
 
-Secondary Actors:
+Secondary Actors: Player
 
-Open Issues:
+Open Issues: N/A
 
 
 ### Use Case: Forfeit
@@ -574,4 +577,4 @@ Channel to Actor:
 
 Secondary Actors:
 
-#Open Issues:
+Open Issues:
