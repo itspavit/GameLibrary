@@ -34,15 +34,14 @@ Goal in Context: Move one of the player's pieces
 
 Precondition: It is the player's turn
 
-Trigger: The movePiece() function is called by from the GUI
+Trigger: The player moves a piece in the GUI
 
 Scenario:
-  1. the player moves their piece in the GUI
-  2. a movePiece() function is called
-  3. the game checks if the move is allowed, or a piece has been jumped and updates the game state accordingly
-  4. if the move is allowed, it is sent to the opponents game
+  1. The player moves their piece in the GUI
+  2. The game checks if the move is allowed, or a piece has been jumped and updates the game state accordingly
+  3. If the move is allowed, it is sent to the opponents game
  
-Post Condition: the game checks if the move is allowed (see validate move)
+Post Condition: The game checks if the move is allowed (see validate move)
 
 Exceptions: N/A
 
@@ -68,13 +67,12 @@ Goal in Context: Update the game with the opponents move
 
 Precondition: it is the opponents turn
 
-Trigger: the network code calls a moveOpponent() function
+Trigger: the network code receives a move from the opponent
 
 Scenario:
-  1. the network code recieves a move from the opponent player's computer
-  2. some moveOpponent() function is called
-  3. the game checks if the move is allowed or a piece has been jumped, and updates the game state accordingly
-  4. tell the GUI to redraw the new game state
+  1. The network code receives a move from the opponent player's computer
+  2. The game checks if the move is allowed or a piece has been jumped, and updates the game state accordingly
+  3. Tell the GUI to redraw the new game state
 
 Post Condition: the game checks if the move is allowed (see validate move)
 
@@ -104,20 +102,20 @@ Goal in Context: Make sure an attempted move follows the rules
 
 Precondition: the player or opponent tries to move a piece
 
-Trigger: 
+Trigger: the movement code checks if the move is valid
 
 Scenario:
-  1. a player move a game piece, calling move()/moveOpponent()
-  2. the game checks if the move is allowed
-  3. the result of the check is returned to the movement code
+  1. A player moves a game piece
+  2. The game checks if the move is allowed
+  3. The result of the check is returned to the piece movement code
 
-Post Condition: 
+Post Condition: the movement code allows/prevents the move from happening
 
 Exceptions: N/A
 
 Priority: Very High
 
-When Available: Iteration 1 (may be updated with more complex rules later)
+When Available: Iteration 1 (more complex rules may be updated in later)
 
 Frequency of Use: Incredibly often, lots of times per game
 
@@ -135,15 +133,16 @@ Iteration: 1
 
 Goal in Context: Jump one players piece over the other's, and remove the jumped piece from the board
 
-Precondition: it is the correct player's turn
+Precondition: It is the correct player's turn
 
-Trigger: the player/opponent makes a valid move that moves 2 spaces 
+Trigger: The player/opponent makes a valid move that moves 2 spaces 
 
 Scenario: 
   1. A player jumps the opponents piece through the GUI
-  2. the movePiece() function verifies that they are allowed to jump the piece
-  3. the players jumping piece is moved, and the opponents piece is removed from the board
-  4. the GUI updates with the new game state
+  2. The movement code verifies that they are allowed to jump the piece
+  3. The players jumping piece is moved, and the opponents piece is removed from the board
+  4. The GUI updates with the new game state
+
 Post Condition: the jumped piece gets removed from the board, and the GUI shows the new game state
 
 Exceptions: N/A
@@ -174,8 +173,8 @@ Trigger: The piece reached the other side of the board
 
 Scenario:
   1. A player moves their piece into the last row of the board
-  2. the piece gets promoted to a king, and can now move both directions
-  3. the game state and GUI update with the new changes
+  2. The piece gets promoted to a king, and can now move both directions
+  3. The game state and GUI update with the new changes
 Post Condition: the piece becomes a king, and the GUI shows the new game state
 
 Exceptions: N/A
@@ -198,7 +197,7 @@ Primary Actor: Player
 
 Iteration: 2
 
-Goal in Context: Show where a piece cam move on the board
+Goal in Context: Show the player where a piece cam move on the board
 
 Precondition: It is the players turn
 
@@ -213,7 +212,7 @@ Post Condition: The player can select where they want to move the piece
 
 Exceptions: N/A
 
-Priority: mid-low
+Priority: Medium - Low
 
 When Available: once all the game rules and systems are already working
 
@@ -233,11 +232,11 @@ Primary Actor: Player and Opponent
 
 Iteration: 1
 
-Goal in Context: start a new game of checkers
+Goal in Context: Start a new game of checkers
 
-Precondition: both players have opened the game, and start a game with the matchmaking system
+Precondition: Both players have opened the game, and start a game with the matchmaking system, or rematch button
 
-Trigger: the matchmaking system creates a match with the player and opponent
+Trigger: The matchmaking system creates a match with the player and opponent
 
 Scenario:
   1. The player and opponent with similar skill levels both look for a new match in the matchmaking system
@@ -286,7 +285,7 @@ Priority: Medium
 
 When Available: Iteration 2, after game logic and systems are done
 
-Frequency of Use: zero to many times per session
+Frequency of Use: Zero to many times per session
 
 Channel to Actor: GUI/Network code
 
@@ -333,26 +332,26 @@ Primary Actor: Player
 
 Iteration: 1
 
-Goal in Context: show the player the results of the game, and give the option to rematch or exit
+Goal in Context: Show the player the results of the game, and give the option to rematch or exit
 
-Precondition: the game has ended from either a player either winning or forfeiting
+Precondition: The player and opponent are in the middle of a game
 
-Trigger: 
+Trigger: The game has ended from either player winning or forfeiting
 
 Scenario:
   1. A player wins the game, and signals to show the ending screen
   2. The end screen is shown, with the results of the game
   3. The player is able to rematch or quit the game
 
-Post Condition: the player see their results and can rematch or quit the game
+Post Condition: The player see their results and can rematch or quit the game
 
 Exceptions: N/A
 
 Priority: High 
 
-When Available: iteration 1, after game rules are implemented
+When Available: Iteration 1, after game rules are implemented
 
-Frequency of Use: once per game
+Frequency of Use: Once per game
 
 Channel to Actor: GUI
 
@@ -366,19 +365,19 @@ Primary Actor: Player
 
 Iteration: 1
 
-Goal in Context: let the player know they won the game, and update their rating/statistics
+Goal in Context: Let the player know they won the game, and update their rating/statistics
 
-Precondition: the player finished their move, and it is the opponents turn
+Precondition: The player finished their move, and it is the opponents turn
 
-Trigger: the opponent has no pieces they can move on their turn
+Trigger: The opponent has no pieces they can move on their turn
 
 Scenario:
   1. The player jumps the opponent's last piece, or blocks all their moves
   2. The opponent has no pieces they can move on their turn
-  4. The players win rating gets updated
-  5. The game complete screen is shown, letting them know they won
+  3. The players win rating gets updated
+  4. The game complete screen is shown, letting them know they won
 
-Post Condition: the results screen is shown (see game complete)
+Post Condition: The results screen is shown (see game complete)
 
 Exceptions: N/A
 
@@ -400,19 +399,19 @@ Primary Actor: Opponent
 
 Iteration: 1
 
-Goal in Context: let the player know they lost the game, and update their rating/statistics
+Goal in Context: Let the player know they lost the game, and update their rating/statistics
 
-Precondition: the opponent has finished their move, and it is the player's turn
+Precondition: The opponent has finished their move, and it is the player's turn
 
-Trigger: the player has no pieces they can move on their turn
+Trigger: The player has no pieces they can move on their turn
 
 Scenario:
   1. The opponent jumps the player's last piece, or blocks all their moves
   2. The player has no pieces they can move on their turn
-  4. The players win rating gets updated
-  5. The game results screen is shown, letting them know they won
+  3. The players win rating gets updated
+  4. The game results screen is shown, letting them know they won
 
-Post Condition: the results screen is shown (see game complete)
+Post Condition: The results screen is shown (see game complete)
 
 Exceptions: N/A
 
@@ -434,11 +433,11 @@ Primary Actor: Player
 
 Iteration: 2
 
-Goal in Context: let the player end the game before it reaches a win/lose state
+Goal in Context: Let the player end the game before it reaches a win/lose state
 
-Precondition: the player is playing a game with the opponent
+Precondition: The player is playing a game with the opponent
 
-Trigger: the player clicks a forfeit button in the GUI
+Trigger: The player clicks a forfeit button in the GUI
 
 Scenario:
   1. The player wants to end the game, and clicks the forfeit button
@@ -446,7 +445,7 @@ Scenario:
   3. The resignation is sent to the opponent, letting them know they've won
   4. The game ends, and the player is sent to the result screen
 
-Post Condition: the results screen is shown (see game complete)
+Post Condition: The results screen is shown (see game complete)
 
 Exceptions: N/A
 
@@ -454,7 +453,7 @@ Priority: Medium
 
 When Available: Iteration 2, after game rules have been completed
 
-Frequency of Use: low, up to once a game
+Frequency of Use: Low, up to once a game
 
 Channel to Actors: GUI/Network code
 
@@ -468,18 +467,18 @@ Primary Actor: Opponent
 
 Iteration: 2
 
-Goal in Context: tell the player that their opponent has forfeited
+Goal in Context: Tell the player that their opponent has forfeited
 
-Precondition: the player is playing a game with the opponent
+Precondition: The player is playing a game with the opponent
 
-Trigger: the network code receives data saying that the opponent has forfeited
+Trigger: The network code receives data saying that the opponent has forfeited
 
 Scenario:
-  1. the network code receives data saying the opponent has forfeited
-  2. the game is registered as a win in the player's rating
-  3. the game ends, and the player is sent to the result screen
+  1. The network code receives data saying the opponent has forfeited
+  2. The game is registered as a win in the player's rating
+  3. The game ends, and the player is sent to the result screen
 
-Post Condition: the results screen is shown (see game complete)
+Post Condition: The results screen is shown (see game complete)
 
 Exceptions: N/A
 
@@ -487,7 +486,7 @@ Priority: Medium
 
 When Available: Iteration 2, after game rules have been completed
 
-Frequency of Use: low, up to once a game
+Frequency of Use: Low, up to once a game
 
 Channel to Actors: GUI/Network code
 
@@ -501,34 +500,34 @@ Primary Actor: Player
 
 Iteration: 1
 
-Goal in Context: let the player send a chat message to their opponent
+Goal in Context: Let the player send a chat message to their opponent
 
-Precondition: the player has been matched with an opponent 
+Precondition: The player has been matched with an opponent 
 
-Trigger: the player sends a message through the GUI
+Trigger: The player sends a message through the GUI
 
 Scenario:
-  1. the player types their message in the chat and presses enter
-  2. the message is sent though the network code and received by the opponent
-  3. the opponent sees the message in their game
+  1. The player types their message in the chat and presses enter
+  2. The message is sent though the network code and received by the opponent
+  3. The opponent sees the message in their game
 
-Post Condition: the opponent sees the players message
+Post Condition: The opponent sees the players message
 
 Exceptions: 
-  - network errors
+  - Network errors
 
-Priority: high (in project outline document)
+Priority: High (in project outline document)
 
-When Available: iteration 1, after game logic
+When Available: Iteration 1, after game logic
 
-Frequency of Use: infrequently to many times per game 
+Frequency of Use: Infrequently to many times per game 
 
 Channel to Actor: GUI/Network code
 
 Secondary Actors: Opponent
 
 Open Issues:
-  - should there be any moderation/filtering in the chat
+  - Should there be any moderation/filtering/reporting system in place
 
 
 ### Use Case: Receive Chat Message
@@ -536,31 +535,31 @@ Primary Actor: Opponent
 
 Iteration: 1
 
-Goal in Context: let the player receive chat messages from their opponent
+Goal in Context: Let the player receive chat messages from their opponent
 
-Precondition: the player has been matched with an opponent 
+Precondition: The player has been matched with an opponent 
 
-Trigger: the network code receives a message from the opponent
+Trigger: The network code receives a message from the opponent
 
 Scenario:
-  1. the network code recieves a message sent from the opponent
-  3. the game recieves the mesage, and displays it in the GUI for the player
+  1. The network code receives a message sent from the opponent
+  2. The game receives the message, and displays it in the GUI for the player
 
-Post Condition: the player sees the opponent's message
+Post Condition: The player sees the opponent's message
 
 Exceptions: 
-  - network errors
+  - Network errors
 
-Priority: high (in project outline document)
+Priority: High (in project outline document)
 
-When Available: iteration 1, after game logic
+When Available: Iteration 1, after game logic
 
-Frequency of Use: infrequently to many times per game 
+Frequency of Use: Infrequently to many times per game 
 
 Channel to Actor: GUI/Network code
 
 Secondary Actors: Player
 
 Open Issues:
-  - should you be able to disable/block/filter the chat messages
+  - Should you be able to disable/block/filter chat messages
 
