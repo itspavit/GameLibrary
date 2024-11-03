@@ -11,8 +11,9 @@
 
 ### **Meta Game Actions**
 - start game
-- choose starting player
 - rematch
+- exit game
+- game complete
 - win
 - lose
 - forfeit
@@ -263,48 +264,89 @@ Secondary Actors: N/A
 Open Issues: N/A
 
 
-### Use Case: Choose Starting Player
-Primary Actor:
-
-Iteration:
-
-Goal in Context:
-
-Precondition:
-
-Trigger:
-
-Scenario:
-
-Post Condition:
-
-Exceptions:
-
-Priority:
-
-When Available:
-
-Frequency of Use:
-
-Channel to Actor:
-
-Secondary Actors:
-
-Open Issues:
-
-
 ### Use Case: Rematch
-Primary Actor:
+Primary Actor: Player and Opponent
 
-Iteration:
+Iteration: 2
 
-Goal in Context:
+Goal in Context: Let the player and opponent start a new game once someone has won
 
-Precondition:
-
-Trigger:
+Precondition: The game has ended, and the results screen is shown (see Game Complete)
+ 
+Trigger: Both players indicate they want a rematch
 
 Scenario:
+  1. The game of checkers ends, and the results screen is shown
+  2. Both the opponent and player click the rematch button
+  3. A new game of checkers is started
+
+Post Condition: The game restarts (see start game)
+
+Exceptions: 
+  - A player selects rematch, but then disconnects, making rematching impossible
+
+Priority: Medium
+
+When Available: Iteration 2, after game logic and systems are done
+
+Frequency of Use: zero to many times per session
+
+Channel to Actor: GUI/Network code
+
+Secondary Actors: N/A
+
+Open Issues: N/A
+
+
+### Use Case: Exit Game
+Primary Actor: Player
+
+Iteration: 2
+
+Goal in Context: Let the player leave the once the game is over
+
+Precondition: The game is finished and the results screen is being shown (see Game Complete)
+
+Trigger: The player selects the exit game button
+
+Scenario:
+  1. The game of checkers ends, and the results screen is shown
+  2. The player clicks the exit game button
+  3. The opponents stops being allowed to rematch
+  3. The game is closed
+
+Post Condition: The game closes
+
+Exceptions: N/A
+
+Priority: Medium - High
+
+When Available: Once results screen is implemented
+
+Frequency of Use: Once per session
+
+Channel to Actor: GUI
+
+Secondary Actors: Opponent
+
+Open Issues: N/A
+
+### Use Case: Game Complete
+Primary Actor: Player
+
+Iteration: 1
+
+Goal in Context: show the player the results of the game, and give the option to rematch or exit
+
+Precondition: the player finishes making their move, and it is the opponents turn
+
+Trigger: the opponent has no pieces they can move on their turn
+
+Scenario:
+  1. the player jumps the opponent's last piece, or blocks all their moves
+  2. the opponent has no pieces they can move on their turn
+  4. the players win rating gets updated
+  5. the game complete screen is shown, letting them know they won
 
 Post Condition:
 
@@ -321,20 +363,22 @@ Channel to Actor:
 Secondary Actors:
 
 Open Issues:
-
-
 ### Use Case: Win
-Primary Actor:
+Primary Actor: Player
 
-Iteration:
+Iteration: 1
 
-Goal in Context:
+Goal in Context: let the player know they won the game, and update their rating/statistics
 
-Precondition:
+Precondition: the player finishes making their move, and it is the opponents turn
 
-Trigger:
+Trigger: the opponent has no pieces they can move on their turn
 
 Scenario:
+  1. the player jumps the opponent's last piece, or blocks all their moves
+  2. the opponent has no pieces they can move on their turn
+  4. the players win rating gets updated
+  5. the game complete screen is shown, letting them know they won
 
 Post Condition:
 
