@@ -18,7 +18,7 @@
 |Prajnya Moola          | 30182604  |  
 |Saad Zafar Khan        | 30258277  |  
 |Ivan Chen              | 30231504  |
-|Alex Zhou              |           |
+|Alex Zhou              | 30176165  |
 |Kiyan Merali           | 30209183  |  
 |Pavitpal Singh Bhagat  | 30177873  |  
 |Aiden Chahal           | 30174601  |  
