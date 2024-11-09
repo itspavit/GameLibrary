@@ -1,5 +1,8 @@
 package GameLogic.Chess;
 
+/**
+ * the coordinate class is a data structure for specifying locations on the chess board
+ */
 public class Coordinate
 {
     // the min and max index values for the chess board, used to bound the coordinate
