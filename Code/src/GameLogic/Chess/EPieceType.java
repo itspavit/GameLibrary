@@ -5,7 +5,7 @@ public enum EPieceType
     PAWN,
     KNIGHT,
     BISHOP,
-    ROCK,
+    ROOK,
     QUEEN,
     KING
 }

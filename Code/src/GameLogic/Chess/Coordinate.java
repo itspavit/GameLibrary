@@ -18,7 +18,7 @@ public class Coordinate
      * @param _x: the x value of the coordinate
      * @param _y; the y value of the coordinate
      */
-    Coordinate(int _x, int _y)
+    public Coordinate(int _x, int _y)
     {
 
         // ensure that the x and y values are appropriately bounded
