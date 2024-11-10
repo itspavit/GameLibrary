@@ -7,21 +7,22 @@ public class ChessBoard
 {
     // the side length of a chess board
     static final int BOARD_SIZE = 8;
-    static final int MAX_MOVES = 150; // the sum total number of moves before the game is an automatic draw
+    static final int MAX_MOVES = 75; // the number of allowed moves for each player
 
     // the array of chess pieces that represents the board
-    ChessPiece[][] board_array; // bottom left (left white rook) is the origin, (first (x) coordinate is left to right))
+    private ChessPiece[][] board_array; // bottom left (left white rook) is the origin, (first (x) coordinate is left to right))
     // the pieces available to player 1
-    ArrayList<ChessPiece> p1_pieces;
+    private ArrayList<ChessPiece> p1_pieces;
     // the pieces available to player 2
-    ArrayList<ChessPiece> p2_pieces;
+    private ArrayList<ChessPiece> p2_pieces;
     // player 1 pieces taken of the board
-    ArrayList<ChessPiece> p1_captured_pieces;
+    private ArrayList<ChessPiece> p1_captured_pieces;
     // player 2 pieces taken of the board
-    ArrayList<ChessPiece> p2_captured_pieces;
+    private ArrayList<ChessPiece> p2_captured_pieces;
     // is player one using the white pieces
-    boolean p1_white = true;
-    int num_moves = 0;
+    private boolean p1_white = true;
+    private int p2_moves = 0;
+    private int p1_moves = 0;
 
     /**
      * initialize the chess board
@@ -212,7 +213,14 @@ public class ChessBoard
             }
         }
         // increment the move counter
-        num_moves++;
+        if(is_p1)
+        {
+            p1_moves++;
+        }
+        else
+        {
+            p2_moves++;
+        }
 
         return EMoveResult.VALID_MOVE;
     }
@@ -231,7 +239,7 @@ public class ChessBoard
         // total number of moves exceeds the limit
 
         // if the number of moves is more than the max number of moves then return true
-        if(num_moves >= MAX_MOVES)
+        if((p1_moves >= MAX_MOVES) && (p2_moves >= MAX_MOVES))
         {
             return EGameState.DRAW;
         }
@@ -332,6 +340,35 @@ public class ChessBoard
 
         // test for game over status
         return TestForGameOver();
+    }
+
+    public int GetP1Moves()
+    {
+        return p1_moves;
+    }
+
+    public int GetP2Moves()
+    {
+        return p2_moves;
+    }
+
+    public int GetP1Captures()
+    {
+        return p2_captured_pieces.size();
+    }
+
+    public int GetP2Captures()
+    {
+        return p1_captured_pieces.size();
+    }
+
+    /**
+     * returns a formatted version of the board that the gui can use to display the game
+     * @return: the formatted board
+     */
+    public BoardFormatGUI GetFormattedOutput()
+    {
+        return null;
     }
 
 }
