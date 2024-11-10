@@ -7,5 +7,6 @@ public enum EPieceType
     BISHOP,
     ROOK,
     QUEEN,
-    KING
+    KING,
+    NOTHING
 }

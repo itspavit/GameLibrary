@@ -8,7 +8,7 @@ public abstract class ChessPiece
     // the coordinate of the position of the piece on the board
     protected Coordinate position;
     // the piece type
-    protected EPieceType type;
+    protected EPieceType type = EPieceType.NOTHING;
     // color of the piece
     protected boolean is_white;
     // the board this piece is on (needed to check if a piece is in its intended move path)
@@ -31,13 +31,13 @@ public abstract class ChessPiece
     }
 
     /**
-     * checks if this position is a valid position to move to
+     * attempts to move the piece to the given location
      * @param target: the targeted position to move to
-     * @return : true if this piece can move to this position, false if not
+     * @return : the result of the move attempt
      */
-    public boolean CanMoveToPosition(Coordinate target)
+    public EMoveResult AttemptMove(Coordinate target)
     {
-        return false;
+        return EMoveResult.OUT_OF_PIECE_RANGE;
     }
 
     /**
@@ -46,7 +46,11 @@ public abstract class ChessPiece
      */
     public void MovePieceToPosition(Coordinate target)
     {
+        // clear old position
+        board.ClearSquare(position);
+        // update position
         position = target;
+        // place the piece in this position on the board
         board.PlacePieceAtPos(target, this);
     }
 
@@ -63,6 +67,29 @@ public abstract class ChessPiece
     public int GetID()
     {
         return piece_id;
+    }
+
+    /**
+     * is this piece a white piece
+     * @return : true if this piece is white
+     */
+    public boolean IsWhite()
+    {
+        return is_white;
+    }
+
+    /**
+     * get the position of this piece
+     * @return : the position of this piece
+     */
+    public Coordinate GetPosition()
+    {
+        return position;
+    }
+
+    public EPieceType GetPieceType()
+    {
+        return type;
     }
 
 

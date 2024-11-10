@@ -10,4 +10,16 @@ public class Rook extends ChessPiece
         super(start_pos, isWhite, _board, id);
         type = EPieceType.ROOK;
     }
+
+    @Override
+    public EMoveResult AttemptMove(Coordinate target)
+    {
+
+    }
+
+    @Override
+    public boolean TestForInCheck()
+    {
+        return false;
+    };
 }

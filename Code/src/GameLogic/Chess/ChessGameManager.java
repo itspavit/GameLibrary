@@ -116,6 +116,14 @@ public class ChessGameManager
             // attempt the move and store the result
             EMoveResult move_result = chessBoard.AttemptMove(selected_piece, click_pos, is_p1_turn);
 
+            // let player choose new piece for pawn
+            if(move_result == EMoveResult.PROMOTE_PAWN)
+            {
+                // update the selected piece to the position
+                selected_piece = click_pos;
+                gui.DisplayPromotPawn(is_p1_turn);
+            }
+
             // if the move attempt was valid then update the game
             if(move_result == EMoveResult.VALID_MOVE)
             {
@@ -167,6 +175,36 @@ public class ChessGameManager
                 gui.DisplayInCheck(false);
             }
         }
+    }
+
+    /**
+     * handles user input for promoting the pawn
+     * @param type: the piece type to promote the pawn to
+     */
+    public void HandlePromotion(EPieceType type)
+    {
+        // unselect the current piece
+        chessBoard.PromotePawn(selected_piece, type);
+        piece_selected = false;
+        gui.SetSelectedPeice(selected_piece, false);
+
+        // set the player interface for the next turn
+        if(is_p1_turn)
+        {
+            player_1.SetToOthersTurn();
+            player_2.SetToYourTurn();
+        }
+        else
+        {
+            player_1.SetToYourTurn();
+            player_2.SetToOthersTurn();
+        }
+
+        // set to the next players turn
+        is_p1_turn = !is_p1_turn;
+
+        // update the game
+        gui.UpdateBoard(chessBoard.GetFormattedOutput());
     }
 
     /**
