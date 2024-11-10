@@ -3,7 +3,9 @@ package GameLogic.Chess;
 public enum EGameState
 {
     IN_PLAY,
-    WON,
+    P1_WINS,
+    P2_WINS,
     DRAW,
-    IN_CHECK
+    P1_IN_CHECK,
+    P2_IN_CHECK
 }

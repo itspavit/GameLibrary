@@ -5,9 +5,9 @@ package GameLogic.Chess;
  */
 public class Rook extends ChessPiece
 {
-    Rook(Coordinate start_pos, boolean isWhite, ChessBoard _board)
+    Rook(Coordinate start_pos, boolean isWhite, ChessBoard _board, int id)
     {
-        super(start_pos, isWhite, _board);
+        super(start_pos, isWhite, _board, id);
         type = EPieceType.ROOK;
     }
 }
