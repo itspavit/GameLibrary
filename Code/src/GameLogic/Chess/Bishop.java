@@ -30,9 +30,12 @@ public class Bishop extends ChessPiece
             // the steps are used when tracing the move of the bishop to its target
             int x_step = 1;
             int y_step = 1;
+
             if (x_delta < 0)
             {
                 x_step = -1;
+                // this gets the total number of spaces to move diagonally
+                x_delta = -x_delta;
             }
 
             if (y_delta < 0)

@@ -71,7 +71,7 @@ public class King extends ChessPiece
         int x_start = position.GetX();
         int y_start = position.GetY();
 
-        // check each possible position that a knight is allowed to move to
+        // check each possible position that a king is allowed to move to
         boolean result = SubTestForInCheck(x_start + 1, y_start + 1, needed_content);
         result = result || SubTestForInCheck(x_start + 1, y_start, needed_content);
         result = result || SubTestForInCheck(x_start + 1, y_start - 1, needed_content);
@@ -93,12 +93,15 @@ public class King extends ChessPiece
      */
     private boolean SubTestForInCheck(int x, int y, ESquareContents square)
     {
+        // ensure that this position is on the board
         if((x > 7) || (x < 0) || (y > 7) || (y < 0))
         {
             return false;
         }
+        // create the target coordinate
         Coordinate pos = new Coordinate(x, y);
 
+        // check to see if there is a king of the opposite color there
         if((board.AtCoordinate(pos) == square) && (board.GetPieceType(pos) == EPieceType.KING))
         {
             return true;
