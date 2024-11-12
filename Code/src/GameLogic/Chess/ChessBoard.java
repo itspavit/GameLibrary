@@ -24,6 +24,9 @@ public class ChessBoard
     private int p2_moves = 0;
     private int p1_moves = 0;
 
+    private boolean p1_has_king = true;
+    private boolean p2_has_king = true;
+
     /**
      * initialize the chess board
      * @param _p1_white: should player 1 use the white pieces
@@ -54,54 +57,75 @@ public class ChessBoard
         // the ids are for mapping possible draw scenarios to sums of id numbers, trust me it is much simpler than
         // checking complex conditionals for remaining pieces
         // player 1 pieces
-        ChessPiece temp = new Rook(new Coordinate(0,0), _p1_white, this, -1000);
+        int y_val = 0;
+        if(!_p1_white)
+        {
+            y_val = 7;
+        }
+        ChessPiece temp = new Rook(new Coordinate(0,y_val), (_p1_white), this, -1000);
         p1_pieces.add(temp);
-        temp = new Knight(new Coordinate(1, 0),_p1_white, this , 2);
+        temp = new Knight(new Coordinate(1, y_val),(_p1_white), this , 2);
         p1_pieces.add(temp);
-        temp = new Bishop(new Coordinate(2, 0),_p1_white, this, 4 );
+        temp = new Bishop(new Coordinate(2, y_val),(_p1_white), this, 4 );
         p1_pieces.add(temp);
-        temp = new King(new Coordinate(3, 0),_p1_white, this, 8 );
+        temp = new King(new Coordinate(3, y_val),(_p1_white), this, 8 );
         p1_pieces.add(temp);
-        temp = new Queen(new Coordinate(4, 0),_p1_white, this, -1000 );
+        temp = new Queen(new Coordinate(4, y_val),_p1_white, this, -1000 );
         p1_pieces.add(temp);
-        temp = new Bishop(new Coordinate(5, 0),_p1_white, this, 32 );
+        temp = new Bishop(new Coordinate(5, y_val),_p1_white, this, 32 );
         p1_pieces.add(temp);
-        temp = new Knight(new Coordinate(6, 0),_p1_white, this, 64 );
+        temp = new Knight(new Coordinate(6, y_val),_p1_white, this, 64 );
         p1_pieces.add(temp);
-        temp = new Rook(new Coordinate(7, 0),_p1_white, this, -1000 );
+        temp = new Rook(new Coordinate(7, y_val),_p1_white, this, -1000 );
         p1_pieces.add(temp);
 
-
+        y_val = 1;
+        if(!_p1_white)
+        {
+            y_val = 6;
+        }
 
         // place player 1 pawns
         for(int i =0; i < BOARD_SIZE; i++)
         {
-            temp = new Pawn(new Coordinate(i, 1), _p1_white, this, -1000);
+            temp = new Pawn(new Coordinate(i, y_val), _p1_white, this, -1000);
             p1_pieces.add(temp);
         }
 
+        y_val = 7;
+        if(!_p1_white)
+        {
+            y_val = 0;
+        }
+
         // player 1 pieces
-        temp = new Rook(new Coordinate(0,7), !_p1_white, this, -1000);
+        temp = new Rook(new Coordinate(0,y_val), (!_p1_white), this, -1000);
         p2_pieces.add(temp);
-        temp = new Knight(new Coordinate(1, 7),!_p1_white, this, 2 );
+        temp = new Knight(new Coordinate(1, y_val),(!_p1_white), this, 2 );
         p2_pieces.add(temp);
-        temp = new Bishop(new Coordinate(2, 7),!_p1_white, this, 32 );
+        temp = new Bishop(new Coordinate(2, y_val),(!_p1_white), this, 32 );
         p2_pieces.add(temp);
-        temp = new King(new Coordinate(3, 7),!_p1_white, this, 8 );
+        temp = new King(new Coordinate(3, y_val),(!_p1_white), this, 8 );
         p2_pieces.add(temp);
-        temp = new Queen(new Coordinate(4, 7),!_p1_white, this, -1000 );
+        temp = new Queen(new Coordinate(4, y_val),(!_p1_white), this, -1000 );
         p2_pieces.add(temp);
-        temp = new Bishop(new Coordinate(5, 7),!_p1_white, this, 4 );
+        temp = new Bishop(new Coordinate(5, y_val),(!_p1_white), this, 4 );
         p2_pieces.add(temp);
-        temp = new Knight(new Coordinate(6, 7),!_p1_white, this, 64 );
+        temp = new Knight(new Coordinate(6, y_val),(!_p1_white), this, 64 );
         p2_pieces.add(temp);
-        temp = new Rook(new Coordinate(7, 7),!_p1_white, this, -1000 );
+        temp = new Rook(new Coordinate(7, y_val),(!_p1_white), this, -1000 );
         p2_pieces.add(temp);
+
+        y_val = 6;
+        if(!_p1_white)
+        {
+            y_val = 1;
+        }
 
         // place player 1 pawns
         for(int i =0; i < BOARD_SIZE; i++)
         {
-            temp = new Pawn(new Coordinate(i, 6), !_p1_white, this, -1000);
+            temp = new Pawn(new Coordinate(i, y_val), (!_p1_white), this, -1000);
             p2_pieces.add(temp);
         }
     }
@@ -190,12 +214,20 @@ public class ChessBoard
         // if the piece belongs to player 1 then capture the player 1 piece
         if(p1_pieces.contains(contents))
         {
+            if(contents.GetPieceType() == EPieceType.KING)
+            {
+                p1_has_king = false;
+            }
             p1_pieces.remove(contents);
             p1_captured_pieces.add(contents);
         }
         // otherwise capture the player 2 piece
         else if(p2_pieces.contains(contents))
         {
+            if(contents.GetPieceType() == EPieceType.KING)
+            {
+                p2_has_king = false;
+            }
             p2_pieces.remove(contents);
             p2_captured_pieces.add(contents);
         }
@@ -367,13 +399,13 @@ public class ChessBoard
         }
 
         // if player 1 is missing the king then player 2 wins
-        if((p1_layout_code & 8) == 0)
+        if(!p1_has_king)
         {
             return EGameState.P2_WINS;
         }
 
         // if player 2 is missing the king then player 1 wins
-        if((p2_layout_code & 8) == 0)
+        if(!p2_has_king)
         {
             return EGameState.P1_WINS;
         }
@@ -458,9 +490,38 @@ public class ChessBoard
      * returns a formatted version of the board that the gui can use to display the game
      * @return: the formatted board
      */
-    public BoardFormatGUI GetFormattedOutput()
+    public BoardFormatSquare[][] GetFormattedOutput()
     {
-        return null;
+        BoardFormatSquare board_format[][] = new BoardFormatSquare[8][8];
+
+        for(int x = 0; x < 8; x++)
+        {
+            for(int y = 0; y < 8; y++)
+            {
+                BoardFormatSquare square = new BoardFormatSquare();
+                square.is_selected = false;
+                ChessPiece piece = board_array[x][y];
+                if(piece == null)
+                {
+                    square.square_type = ESquareContents.SQUARE_EMPTY;
+                    square.piece_type = EPieceType.NOTHING;
+                }
+                else
+                {
+                    if(piece.is_white)
+                    {
+                        square.square_type = ESquareContents.WHITE_PIECE;
+                    }
+                    else
+                    {
+                        square.square_type = ESquareContents.BLACK_PIECE;
+                    }
+                    square.piece_type = piece.GetPieceType();
+                }
+                board_format[x][y] = square;
+            }
+        }
+        return board_format;
     }
 
 }

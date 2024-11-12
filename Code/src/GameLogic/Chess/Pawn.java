@@ -11,12 +11,6 @@ public class Pawn extends ChessPiece
     @Override
     public EMoveResult AttemptMove(Coordinate target)
     {
-        // a pawn cannot move sideways or backwards
-        if(target.GetY() <= position.GetY())
-        {
-            return EMoveResult.OUT_OF_PIECE_RANGE;
-        }
-
         // get the content of the square at this coordinate
         ESquareContents square = board.AtCoordinate(target);
 
@@ -52,7 +46,7 @@ public class Pawn extends ChessPiece
                 }
 
                 // pawn moving two spaces forward on first move into empty square
-                if((position.GetY() == 1) && (target.GetX() == position.GetX()) && (target.GetY() == (position.GetY() + 2)))
+                if((position.GetY() == 1) && (target.GetX() == position.GetX()) && (target.GetY() == 3))
                 {
                     MovePieceToPosition(target);
                     return EMoveResult.VALID_MOVE;
@@ -79,7 +73,7 @@ public class Pawn extends ChessPiece
                 }
 
                 // pawn moving two spaces forward on first move into empty square
-                if((position.GetY() == 6) && (target.GetX() == position.GetX()) && (target.GetY() == (position.GetY() - 2)))
+                if((position.GetY() == 6) && (target.GetX() == position.GetX()) && (target.GetY() == 4))
                 {
                     MovePieceToPosition(target);
                     return EMoveResult.VALID_MOVE;
@@ -124,7 +118,7 @@ public class Pawn extends ChessPiece
             // conditions for en passant
             if(square == ESquareContents.SQUARE_EMPTY)
             {
-                if(is_white && (target.GetY() == 5) && (target.GetY() == (position.GetY() + 1)))
+                if(is_white && (target.GetY() == 5) && (position.GetY() == 4))
                 {
                     Coordinate enpassant = new Coordinate(target.GetY()-1,target.GetX());
                     if((board.AtCoordinate( enpassant) == ESquareContents.BLACK_PIECE) && (board.GetPieceType(enpassant) == EPieceType.PAWN))
@@ -136,7 +130,7 @@ public class Pawn extends ChessPiece
                         return EMoveResult.VALID_MOVE;
                     }
                 }
-                else if(is_white && (target.GetY() == 2) && (target.GetY() == (position.GetY() - 1)))
+                else if(!is_white && (target.GetY() == 2) && (position.GetY() == 3))
                 {
                     Coordinate enpassant = new Coordinate(target.GetY()+1,target.GetX());
                     if((board.AtCoordinate( enpassant) == ESquareContents.WHITE_PIECE) && (board.GetPieceType(enpassant) == EPieceType.PAWN))

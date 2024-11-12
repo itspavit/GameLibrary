@@ -21,6 +21,8 @@ public class ChessGameManager
     // who's turn is it
     private boolean is_p1_turn = false;
     private boolean p1_use_white = false;
+    // used to make sure that no pieces can be moved when a pawn is being promoted
+    private boolean promote_pawn_mode = false;
 
     GUIInterface gui;
 
@@ -33,6 +35,7 @@ public class ChessGameManager
      */
     public ChessGameManager(PlayerInterface p1, PlayerInterface p2, GUIInterface _gui, boolean _is_p1_white)
     {
+        System.out.println("Game Manager Initialized");
         // initialize the chess board
         chessBoard = new ChessBoard(_is_p1_white);
         p1_use_white = _is_p1_white;
@@ -50,14 +53,22 @@ public class ChessGameManager
         // set game state to in play
         current_state = EGameState.IN_PLAY;
 
+        // update the game
+        gui.UpdateBoard(chessBoard.GetFormattedOutput());
+
         // set the turn
         if(_is_p1_white)
         {
             is_p1_turn = true;
+            p1.SetToYourTurn();
+            System.out.print("Player 1 turn, Enter coordinates player 1: ");
+
         }
         else
         {
             is_p1_turn = false;
+            p2.SetToYourTurn();
+            System.out.print("Player 2 turn, Enter coordinates player 2: ");
         }
     }
 
@@ -68,6 +79,11 @@ public class ChessGameManager
      */
     public void HandlePositionClicked(PlayerInterface player, Coordinate click_pos)
     {
+        // do nothing if in promote pawn mode
+        if(promote_pawn_mode)
+        {
+            return;
+        }
         // if the input is not from the player who's active turn it is then return
         if((!is_p1_turn && player == player_1) || (is_p1_turn && player == player_2))
         {
@@ -75,11 +91,12 @@ public class ChessGameManager
         }
 
         // if the selected piece was selected again then unselect that piece
-        if((piece_selected) && (click_pos == selected_piece))
+        if((piece_selected) && (click_pos.CEquals(selected_piece)))
         {
             piece_selected = false;
             // unselect this piece in the GUI
             gui.SetSelectedPeice(click_pos, false);
+            return;
         }
 
         // should the player be moving white pieces
@@ -91,22 +108,25 @@ public class ChessGameManager
         // if a piece is not already selected and the clicked position does not contain a piece then do nothing
         if(!piece_selected && (cell_content == ESquareContents.SQUARE_EMPTY))
         {
+            gui.DisplayMessage("Select a piece before move position", is_p1_turn);
             return;
         }
 
         // if a piece is not already selected and the clicked position contains the wrong color piece then do nothing
         if(!piece_selected && (((cell_content == ESquareContents.WHITE_PIECE) && !use_white_pieces) || ((cell_content == ESquareContents.BLACK_PIECE) && use_white_pieces)))
         {
+            gui.DisplayMessage("Not your piece", is_p1_turn);
             return;
         }
 
 
-         // if a piece has not been selected then
+         // if a piece has not been selected and the selected piece is the correct color then select that piece
         if(!piece_selected && (((cell_content == ESquareContents.WHITE_PIECE) && use_white_pieces) || ((cell_content == ESquareContents.BLACK_PIECE) && !use_white_pieces)))
         {
             piece_selected = true;
             selected_piece = click_pos;
             gui.SetSelectedPeice(click_pos, true);
+            return;
         }
 
 
@@ -119,6 +139,7 @@ public class ChessGameManager
             // let player choose new piece for pawn
             if(move_result == EMoveResult.PROMOTE_PAWN)
             {
+                promote_pawn_mode = true;
                 // update the selected piece to the position
                 selected_piece = click_pos;
                 gui.DisplayPromotPawn(is_p1_turn);
@@ -136,11 +157,13 @@ public class ChessGameManager
                 {
                     player_1.SetToOthersTurn();
                     player_2.SetToYourTurn();
+                    System.out.print("Player 2 turn, Enter coordinates player 2: ");
                 }
                 else
                 {
                     player_1.SetToYourTurn();
                     player_2.SetToOthersTurn();
+                    System.out.print("Player 1 turn, Enter coordinate player 1: ");
                 }
 
                 // set to the next players turn
@@ -151,11 +174,11 @@ public class ChessGameManager
             }
             else if(move_result == EMoveResult.OUT_OF_PIECE_RANGE)
             {
-                gui.DisplayMessage("This piece cannot move here", is_p1_turn);
+                gui.DisplayMessage("This piece cannot move here, Enter coordinate: ", is_p1_turn);
             }
             else if(move_result == EMoveResult.PLACE_ON_OWN_PIECE)
             {
-                gui.DisplayMessage("You cannot capture your own piece", is_p1_turn);
+                gui.DisplayMessage("You cannot capture your own piece, Enter coordinate: ", is_p1_turn);
             }
 
 
@@ -183,6 +206,7 @@ public class ChessGameManager
      */
     public void HandlePromotion(EPieceType type)
     {
+        promote_pawn_mode = false;
         // unselect the current piece
         chessBoard.PromotePawn(selected_piece, type);
         piece_selected = false;
@@ -193,11 +217,13 @@ public class ChessGameManager
         {
             player_1.SetToOthersTurn();
             player_2.SetToYourTurn();
+            System.out.print("Player 2 turn, Enter coordinates player 2: ");
         }
         else
         {
             player_1.SetToYourTurn();
             player_2.SetToOthersTurn();
+            System.out.print("Player 1 turn, Enter coordinate player 1: ");
         }
 
         // set to the next players turn

@@ -17,7 +17,7 @@ public class Rook extends ChessPiece
         // get the contents of the square at the intended move target
         ESquareContents square = board.AtCoordinate(target);
 
-        // do not allow pawn to capture piece of the same color
+        // do not allow capture of piece of the same color
         if( ( is_white && ( square == ESquareContents.WHITE_PIECE)) || (!is_white && (square == ESquareContents.BLACK_PIECE)))
         {
             return EMoveResult.PLACE_ON_OWN_PIECE;

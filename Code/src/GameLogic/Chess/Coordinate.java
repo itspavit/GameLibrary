@@ -76,4 +76,9 @@ public class Coordinate
             this.y = _y;
         }
     }
+
+    public boolean CEquals(Coordinate other)
+    {
+        return (other.GetX() == x) && (other.GetY() == y);
+    }
 }
