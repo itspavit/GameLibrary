@@ -143,6 +143,15 @@ public class ChessGameManager
                 // update the selected piece to the position
                 selected_piece = click_pos;
                 gui.DisplayPromotPawn(is_p1_turn);
+                // wait for the player to choose the promotion
+                if(is_p1_turn)
+                {
+                    player_1.SetToPromotePawn();
+                }
+                else
+                {
+                    player_2.SetToPromotePawn();
+                }
             }
 
             // if the move attempt was valid then update the game
@@ -211,6 +220,16 @@ public class ChessGameManager
         chessBoard.PromotePawn(selected_piece, type);
         piece_selected = false;
         gui.SetSelectedPeice(selected_piece, false);
+
+        // return to normal play mode
+        if(is_p1_turn)
+        {
+            player_1.FinishPromotePawn();
+        }
+        else
+        {
+            player_2.FinishPromotePawn();
+        }
 
         // set the player interface for the next turn
         if(is_p1_turn)

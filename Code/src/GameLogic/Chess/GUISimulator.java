@@ -11,11 +11,14 @@ public class GUISimulator
     public static void main(String[] args)
     {
         System.out.println("Game started");
+        System.out.println("Instructions:\nthe board coordinates work as follows:\nleft to right is the x coordinate (0-7), bottom to top is y coordinate (0-7)");
+        System.out.println("To move a piece, Enter the coordinate of the piece as x then y (eg:0 1 is the leftmost white pawn)\nThen enter the coordinate of the place to move the piece to (eg 0 3)");
+        System.out.println("Enter 's' to stop the game");
         PlayerSimulator p1 = new PlayerSimulator();
         PlayerSimulator p2 = new PlayerSimulator();
         GUIOutputSimulator gui = new GUIOutputSimulator();
 
-        ChessGameManager gameManager = new ChessGameManager(p1, p2, gui, false);
+        ChessGameManager gameManager = new ChessGameManager(p1, p2, gui, true);
 
         while(in_play)
         {

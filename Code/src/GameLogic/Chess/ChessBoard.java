@@ -298,6 +298,7 @@ public class ChessBoard
      */
     public void PromotePawn(Coordinate pos, EPieceType type)
     {
+        System.out.println(String.format("promoting piece at: %d %d", pos.GetX(), pos.GetY()));
         ChessPiece pawn_to_change = board_array[pos.GetX()][pos.GetY()];
 
         // ensure that this is not null and a pawn
@@ -306,10 +307,11 @@ public class ChessBoard
             return;
         }
 
+        System.out.println("piece is a pawn");
         // if the pawn is white and at y = 7 then it has traversed the board
         boolean has_traversed_board = (pawn_to_change.GetPosition().GetY() == 7) && (pawn_to_change.IsWhite());
         // if the pawn is black and at y = 0 then it has traversed the board
-        has_traversed_board = has_traversed_board && ((pawn_to_change.GetPosition().GetY() == 0) && !pawn_to_change.IsWhite());
+        has_traversed_board = has_traversed_board || ((pawn_to_change.GetPosition().GetY() == 0) && !pawn_to_change.IsWhite());
         // change the pawn to a queen if it has traversed the board
         if(has_traversed_board)
         {
