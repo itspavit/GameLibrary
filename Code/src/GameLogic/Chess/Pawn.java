@@ -115,13 +115,21 @@ public class Pawn extends ChessPiece
                 return EMoveResult.VALID_MOVE;
             }
 
+            System.out.println("pawn checking for enpassent");
+
+            // TODO fix en passent
             // conditions for en passant
             if(square == ESquareContents.SQUARE_EMPTY)
             {
+                System.out.println("checking for correct y value in enpassent");
                 if(is_white && (target.GetY() == 5) && (position.GetY() == 4))
                 {
-                    Coordinate enpassant = new Coordinate(target.GetY()-1,target.GetX());
-                    if((board.AtCoordinate( enpassant) == ESquareContents.BLACK_PIECE) && (board.GetPieceType(enpassant) == EPieceType.PAWN))
+                    System.out.println("Checking if there is a pawn to capture in enpassent");
+                    Coordinate enpassant = new Coordinate(target.GetX(),(target.GetY()-1));
+                    System.out.println(String.format("enpassent coordinate: %d, %d: ", enpassant.GetX(), enpassant.GetY()));
+                    System.out.println(board.AtCoordinate(enpassant).GetDisplayName());
+                    System.out.println(board.GetPieceType(enpassant).GetDisplayName());
+                    if((board.AtCoordinate(enpassant) == ESquareContents.BLACK_PIECE) && (board.GetPieceType(enpassant) == EPieceType.PAWN))
                     {
                         // capture the piece
                         board.CapturePiece(enpassant);
@@ -132,7 +140,12 @@ public class Pawn extends ChessPiece
                 }
                 else if(!is_white && (target.GetY() == 2) && (position.GetY() == 3))
                 {
-                    Coordinate enpassant = new Coordinate(target.GetY()+1,target.GetX());
+
+                    System.out.println("Checking if there is a pawn to capture in enpassent");
+                    Coordinate enpassant = new Coordinate(target.GetX(),(target.GetY()+1));
+                    System.out.println(String.format("enpassent coordinate: %d, %d: ", enpassant.GetX(), enpassant.GetY()));
+                    System.out.println(board.AtCoordinate(enpassant).GetDisplayName());
+                    System.out.println(board.GetPieceType(enpassant).GetDisplayName());
                     if((board.AtCoordinate( enpassant) == ESquareContents.WHITE_PIECE) && (board.GetPieceType(enpassant) == EPieceType.PAWN))
                     {
                         // capture the piece
@@ -156,11 +169,13 @@ public class Pawn extends ChessPiece
             Coordinate pos_to_test = new Coordinate(position.GetX()+1, position.GetY()+1);
             if( (board.AtCoordinate(pos_to_test) == ESquareContents.BLACK_PIECE) && (board.GetPieceType(pos_to_test) == EPieceType.KING))
             {
+                System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                 return true;
             }
             pos_to_test = new Coordinate(position.GetX()+1, position.GetY()-1);
             if( (board.AtCoordinate(pos_to_test) == ESquareContents.BLACK_PIECE) && (board.GetPieceType(pos_to_test) == EPieceType.KING))
             {
+                System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                 return true;
             }
         }
@@ -169,11 +184,13 @@ public class Pawn extends ChessPiece
             Coordinate pos_to_test = new Coordinate(position.GetX()-1, position.GetY()+1);
             if( (board.AtCoordinate(pos_to_test) == ESquareContents.WHITE_PIECE) && (board.GetPieceType(pos_to_test) == EPieceType.KING))
             {
+                System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                 return true;
             }
             pos_to_test = new Coordinate(position.GetX()-1, position.GetY()-1);
             if( (board.AtCoordinate(pos_to_test) == ESquareContents.WHITE_PIECE) && (board.GetPieceType(pos_to_test) == EPieceType.KING))
             {
+                System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                 return true;
             }
         }

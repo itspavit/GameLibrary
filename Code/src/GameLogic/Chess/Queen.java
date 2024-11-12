@@ -54,7 +54,7 @@ public class Queen extends ChessPiece
 
             // loop through every position to check if the move is valid
             ESquareContents content;
-            for(int i = 0; i < steps; i++)
+            for(int i = 1; i < steps; i++)
             {
                 // check that there is nothing blocking this piece from moving along this path
                 content = board.AtCoordinate(new Coordinate(position.GetX() + i*x_step, position.GetY() + i*y_step));
@@ -108,16 +108,16 @@ public class Queen extends ChessPiece
         // find the count value
         if(x_step > 0)
         {
-            count = 8 - x;
+            count = 7 - x;
         }
         else if(x_step < 0)
         {
             count = x;
         }
 
-        if((y_step > 0) && ((8 - y) < count))
+        if((y_step > 0) && ((7 - y) < count))
         {
-            count = 8 - y;
+            count = 7 - y;
         }
         else if((y_step < 0) && (y < count ))
         {
@@ -127,7 +127,7 @@ public class Queen extends ChessPiece
         ESquareContents square;
         EPieceType piece;
 
-        for(int i =0; i <= count; i++)
+        for(int i =1; i <= count; i++)
         {
             // calculate the coordinate to check
             Coordinate coord = new Coordinate(position.GetX() + i*x_step, position.GetY() + i*y_step);
@@ -146,6 +146,7 @@ public class Queen extends ChessPiece
                 piece = board.GetPieceType(coord);
                 if(piece == EPieceType.KING)
                 {
+                    System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                     return true;
                 }
                 else

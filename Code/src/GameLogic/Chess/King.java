@@ -104,6 +104,7 @@ public class King extends ChessPiece
         // check to see if there is a king of the opposite color there
         if((board.AtCoordinate(pos) == square) && (board.GetPieceType(pos) == EPieceType.KING))
         {
+            System.out.println(String.format("%s could check the king", type.GetDisplayName()));
             return true;
         }
 

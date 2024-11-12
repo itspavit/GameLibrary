@@ -198,7 +198,7 @@ public class ChessBoard
     }
 
     /**
-     * captures this piece
+     * captures this piece, must be called BEFORE moving the other piece to this position
      * @param piece: the location of the piece to capture
      */
     public void CapturePiece(Coordinate piece)
@@ -219,6 +219,7 @@ public class ChessBoard
                 p1_has_king = false;
             }
             p1_pieces.remove(contents);
+            board_array[piece.GetX()][piece.GetY()] = null;
             p1_captured_pieces.add(contents);
         }
         // otherwise capture the player 2 piece
@@ -229,6 +230,7 @@ public class ChessBoard
                 p2_has_king = false;
             }
             p2_pieces.remove(contents);
+            board_array[piece.GetX()][piece.GetY()] = null;
             p2_captured_pieces.add(contents);
         }
     }
@@ -296,7 +298,6 @@ public class ChessBoard
      */
     public void PromotePawn(Coordinate pos, EPieceType type)
     {
-        // TODO: implement this
         ChessPiece pawn_to_change = board_array[pos.GetX()][pos.GetY()];
 
         // ensure that this is not null and a pawn
@@ -420,7 +421,7 @@ public class ChessBoard
      */
     private boolean IsInCheck(boolean is_p1)
     {
-        if(is_p1)
+        if(!is_p1)
         {
             for(int i = 0; i < p1_pieces.size(); i++)
             {

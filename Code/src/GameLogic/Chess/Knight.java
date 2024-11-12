@@ -101,6 +101,7 @@ public class Knight extends ChessPiece
 
         if((board.AtCoordinate(pos) == square) && (board.GetPieceType(pos) == EPieceType.KING))
         {
+            System.out.println(String.format("%s could check the king", type.GetDisplayName()));
             return true;
         }
 

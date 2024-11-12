@@ -14,11 +14,12 @@ public class Rook extends ChessPiece
     @Override
     public EMoveResult AttemptMove(Coordinate target)
     {
+        System.out.println(String.format("Rook move: %d, %d", target.GetX(), target.GetY()));
         // get the contents of the square at the intended move target
         ESquareContents square = board.AtCoordinate(target);
 
         // do not allow capture of piece of the same color
-        if( ( is_white && ( square == ESquareContents.WHITE_PIECE)) || (!is_white && (square == ESquareContents.BLACK_PIECE)))
+        if(( is_white && ( square == ESquareContents.WHITE_PIECE)) || (!is_white && (square == ESquareContents.BLACK_PIECE)))
         {
             return EMoveResult.PLACE_ON_OWN_PIECE;
         }
@@ -30,6 +31,7 @@ public class Rook extends ChessPiece
         // a Rook can only move in one direction or the other (pre-condition is that target != position)
         if( (x_delta == 0) || (y_delta == 0) )
         {
+            System.out.println(String.format("Rook is moving: dx %d, dy %d", x_delta, y_delta));
             // the steps are used when tracing the movement of the piece to its target position
             int step = 1;
 
@@ -43,9 +45,11 @@ public class Rook extends ChessPiece
                     y_delta = -y_delta;
                 }
 
+                System.out.println(String.format("move along y: y_delta: %d, x_delta %d", y_delta, x_delta));
+
                 // loop through every position to check if the move is valid
                 ESquareContents content;
-                for(int i = 0; i < y_delta; i++)
+                for(int i = 1; i < y_delta; i++)
                 {
                     // check that there is nothing blocking this piece from moving along this path
                     content = board.AtCoordinate(new Coordinate(position.GetX(), position.GetY() + i*step));
@@ -65,7 +69,7 @@ public class Rook extends ChessPiece
                 }
                 // loop through every position to check if the move is valid
                 ESquareContents content;
-                for(int i = 0; i < x_delta; i++)
+                for(int i = 1; i < x_delta; i++)
                 {
                     // check that there is nothing blocking this piece from moving along this path
                     content = board.AtCoordinate(new Coordinate(position.GetX() + i*step, position.GetY()));
@@ -110,7 +114,7 @@ public class Rook extends ChessPiece
         int y = position.GetY();
 
         // scan in positive x direction
-        for(int i = x; i <= 7; i++)
+        for(int i = x + 1; i <= 7; i++)
         {
             // calculate the coordinate to check
             Coordinate coord = new Coordinate(i, y);
@@ -130,6 +134,7 @@ public class Rook extends ChessPiece
                 piece = board.GetPieceType(coord);
                 if(piece == EPieceType.KING)
                 {
+                    System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                     return true;
                 }
                 else
@@ -146,7 +151,7 @@ public class Rook extends ChessPiece
         }
 
         // scan in negative x direction
-        for(int i = x; i >= 0; i--)
+        for(int i = x-1; i >= 0; i--)
         {
             // calculate the coordinate to check
             Coordinate coord = new Coordinate(i, y);
@@ -166,6 +171,7 @@ public class Rook extends ChessPiece
                 piece = board.GetPieceType(coord);
                 if(piece == EPieceType.KING)
                 {
+                    System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                     return true;
                 }
                 else
@@ -182,7 +188,7 @@ public class Rook extends ChessPiece
         }
 
         // scan in positive y direction
-        for(int i = y; i <= 7; i++)
+        for(int i = y+1; i <= 7; i++)
         {
             // calculate the coordinate to check
             Coordinate coord = new Coordinate(x, i);
@@ -202,6 +208,7 @@ public class Rook extends ChessPiece
                 piece = board.GetPieceType(coord);
                 if(piece == EPieceType.KING)
                 {
+                    System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                     return true;
                 }
                 else
@@ -218,7 +225,7 @@ public class Rook extends ChessPiece
         }
 
         // scan in negative y direction
-        for(int i = y; i >= 0; i--)
+        for(int i = y-1; i >= 0; i--)
         {
             // calculate the coordinate to check
             Coordinate coord = new Coordinate(x, i);
@@ -238,6 +245,7 @@ public class Rook extends ChessPiece
                 piece = board.GetPieceType(coord);
                 if(piece == EPieceType.KING)
                 {
+                    System.out.println(String.format("%s could check the king", type.GetDisplayName()));
                     return true;
                 }
                 else
