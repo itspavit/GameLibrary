@@ -1,4 +1,4 @@
-package ca.ucalgary.projectgui;
+package com.example;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

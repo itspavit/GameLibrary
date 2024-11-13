@@ -1,4 +1,4 @@
-package ca.ucalgary.projectgui;
+package com.example;
 
 public class ProfileController {
 }

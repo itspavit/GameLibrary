@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ca.ucalgary.cpsc</groupId>
-    <artifactId>projectgui</artifactId>
+    <artifactId>guicode</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>projectgui</name>
 

@@ -3,6 +3,6 @@ module ca.ucalgary.cpsc.projectgui {
     requires javafx.fxml;
 
 
-    opens ca.ucalgary.projectgui to javafx.fxml;
-    exports ca.ucalgary.projectgui;
+    opens com.example to javafx.fxml;
+    exports com.example;
 }
