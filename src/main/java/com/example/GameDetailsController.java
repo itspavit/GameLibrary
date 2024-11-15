@@ -24,8 +24,8 @@ public class GameDetailsController {
     private Button leaderboardButton;
     private String gameName;
 
-    public void setGameInfo(String title, String description, Image image, String gameName) {
-        this.gameName = gameName;
+    public void setGameInfo(String title, String description, Image image) {
+        this.gameName = title;
         gameTitle.setText(title);
         gameDescription.setText(description);
         gameRating.setText("Rating: 5.0");  //placeholder

@@ -69,7 +69,7 @@ public class GameLibraryController {
 
             GameDetailsController gameDetailsController = loader.getController();
             Image gameImage = Utility.loadImage(gameImages.getOrDefault(gameName, "/images/placeholder.png"));
-            gameDetailsController.setGameInfo(gameName, "Description for " + gameName + ".", gameImage, gameName);
+            gameDetailsController.setGameInfo(gameName, "Description for " + gameName + ".", gameImage);
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
