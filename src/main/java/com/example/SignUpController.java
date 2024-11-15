@@ -32,7 +32,7 @@ public class SignUpController {
     void toLoginScreen(MouseEvent event) {
         try {
             // Load the FXML for the login screen
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/Authentication/login.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600, 400); // Create a new scene for the login page
 
             // Get the current stage from the event

@@ -18,7 +18,7 @@
     <Label fx:id="gameRating" text="Rating : " />
 
     <HBox alignment="CENTER" spacing="20">
-        <Button onAction="#handleViewLeaderboard" style="-fx-background-color: #5a9; -fx-text-fill: white;" text="Leaderboard" />
-        <Button onAction="#handlePlayGame" style="-fx-background-color: #5a9; -fx-text-fill: white;" text="Play Game" />
+        <Button fx:id="leaderboardButton" onMouseClicked="#toLeaderboard" style="-fx-background-color: #5a9; -fx-text-fill: white;" text="Leaderboard" />
+        <Button onAction="#toGameScreen" style="-fx-background-color: #5a9; -fx-text-fill: white;" text="Play Game" />
     </HBox>
 </VBox>

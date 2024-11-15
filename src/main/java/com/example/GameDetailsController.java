@@ -1,9 +1,11 @@
 package com.example;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class GameDetailsController {
 
@@ -18,8 +20,12 @@ public class GameDetailsController {
 
     @FXML
     private Label gameRating;
+    @FXML
+    private Button leaderboardButton;
+    private String gameName;
 
-    public void setGameInfo(String title, String description, Image image) {
+    public void setGameInfo(String title, String description, Image image, String gameName) {
+        this.gameName = gameName;
         gameTitle.setText(title);
         gameDescription.setText(description);
         gameRating.setText("Rating: 5.0");  //placeholder
@@ -32,13 +38,18 @@ public class GameDetailsController {
     }
 
     @FXML
-    private void handlePlayGame() {
-        System.out.println("Starting game..."); //redirect to game screen
+    private void toGameScreen() {
+        if (gameName != null) {
+            GameLauncher gameLauncher = new GameLauncher();
+            gameLauncher.openGame(gameName, (Stage) gameImageView.getScene().getWindow());
+        } else {
+            System.out.println("Game name is not set. Cannot open game.");
+        }
     }
 
     @FXML
-    private void handleViewLeaderboard() {
-        System.out.println("Viewing leaderboard..."); //redirect to leaderboard screen
+    private void toLeaderboard() {
+        Utility.loadPage("leaderboard.fxml", (Stage) leaderboardButton.getScene().getWindow());
     }
 }
 

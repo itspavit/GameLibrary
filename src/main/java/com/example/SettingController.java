@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ProfileController {
+public class SettingController {
     @FXML
     private Button backButton;
 

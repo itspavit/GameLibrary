@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -31,7 +32,7 @@ public class GameLibraryController {
     private TextField searchField;
 
     @FXML
-    private ImageView profileIcon;
+    private Button backButton;
 
     private final Map<String, String> gameImages = new HashMap<>() {{
         put("Chess", "/images/chess.png");
@@ -53,60 +54,22 @@ public class GameLibraryController {
 
     public void initialize() {
         showAllGamesPage(0);
-        profileIcon.setImage(loadImage("/images/profile.png"));
-        profileIcon.setOnMouseClicked(event -> navigateToProfilePage());
         searchField.setOnAction(event -> handleSearch());
     }
 
-    private Image loadImage(String imagePath) {
-        URL resourceUrl = getClass().getResource(imagePath);
-        if (resourceUrl != null) {
-            return new Image(resourceUrl.toExternalForm());
-        } else {
-            System.err.println("Image not found at: " + imagePath);
-            URL fallbackUrl = getClass().getResource("/images/placeholder.png"); //placeholder image
-            if (fallbackUrl != null) {
-                return new Image(fallbackUrl.toExternalForm());
-            } else {
-                System.err.println("Placeholder image not found at: /images/placeholder.png");
-                return null;
-            }
-        }
-    }
-    private void loadPage(String fxmlFileName) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) searchField.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error loading " + fxmlFileName);
-        }
-    }
-    @FXML
-    private void navigateToProfilePage() {
-        loadPage("profilepage.fxml");
-    }
-    @FXML
-    private void navigateToNotificationPage() {
-        loadPage("notificationpage.fxml");
-    }
     @FXML
     private void handleBack() {
-        loadPage("homescreen.fxml");
+        Utility.loadPage("homescreen.fxml", (Stage) backButton.getScene().getWindow());
     }
 
     private void showGameDetails(String gameName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("gameDetails.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("gamedetails.fxml"));
             Parent root = loader.load();
 
             GameDetailsController gameDetailsController = loader.getController();
-            Image gameImage = loadImage(gameImages.getOrDefault(gameName, "/images/placeholder.png"));
-            gameDetailsController.setGameInfo(gameName, "Description for " + gameName + ".", gameImage);
+            Image gameImage = Utility.loadImage(gameImages.getOrDefault(gameName, "/images/placeholder.png"));
+            gameDetailsController.setGameInfo(gameName, "Description for " + gameName + ".", gameImage, gameName);
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
@@ -206,7 +169,7 @@ public class GameLibraryController {
         VBox gameBox = new VBox(8);
         gameBox.setAlignment(Pos.CENTER);
 
-        ImageView gameImageView = new ImageView(loadImage(gameImages.getOrDefault(gameName, "/images/placeholder.png")));
+        ImageView gameImageView = new ImageView(Utility.loadImage(gameImages.getOrDefault(gameName, "/images/placeholder.png")));
         gameImageView.setFitWidth(width);
         gameImageView.setFitHeight(height);
         gameImageView.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 1, 1); " +
