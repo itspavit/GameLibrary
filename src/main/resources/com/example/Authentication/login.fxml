@@ -74,7 +74,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="216.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ToggleButton fx:id="toggleButton" layoutX="14.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleToggleButtonClick" onMouseClicked="#handleToggleButtonClick" prefHeight="17.0" prefWidth="45.0" text="Show">
+            <ToggleButton fx:id="toggleButton" layoutX="14.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleToggleButtonClick" prefHeight="17.0" prefWidth="45.0" text="Show">
                <font>
                   <Font size="11.0" />
                </font>
