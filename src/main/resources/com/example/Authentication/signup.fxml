@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,13 +24,13 @@
             <Text layoutX="179.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
             <Text layoutX="156.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" />
             <Text layoutX="228.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account? " />
-            <Text fill="#4a79d0" layoutX="371.0" layoutY="373.0" onMouseClicked="#toLoginScreen" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
             <Line endX="152.5" layoutX="299.0" layoutY="346.0" startX="-152.5" />
             <TextField layoutX="268.0" layoutY="96.0" promptText="Username" />
             <TextField layoutX="268.0" layoutY="146.0" promptText="Email" />
             <Button layoutX="270.0" layoutY="297.0" mnemonicParsing="false" text="Sign up" />
             <PasswordField layoutX="268.0" layoutY="200.0" promptText="Password" />
             <PasswordField layoutX="268.0" layoutY="246.0" promptText="Confirm password" />
+            <Label fx:id="loginLabel" layoutX="371.0" layoutY="359.0" onMouseClicked="#toLoginScreen" text="Login" textFill="#6890eb" />
          </children>
       </AnchorPane>
    </center>

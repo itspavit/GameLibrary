@@ -6,3 +6,8 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Ignore .gitignore.save file
+.gitignore.save
+
+# Ignore specific file in .idea folder
+.idea/uiDesigner.xml

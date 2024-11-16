@@ -5,9 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -22,11 +24,10 @@ public class SignUpController {
     private PasswordField passwordField;
 
     @FXML
-    private PasswordField confirmPasswordField; // maybe
+    private Button signUpButton;
 
     @FXML
-    private Button signUpButton; // Linked to the sign-up Button in FXML
-
+    private Label loginLabel;
 
     @FXML
     void toLoginScreen(MouseEvent event) {
