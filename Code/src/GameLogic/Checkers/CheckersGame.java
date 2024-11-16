@@ -1,11 +1,22 @@
 package GameLogic.Checkers;
 
 public class CheckersGame {
-    private CheckersLogic checkersLogic;
+    private CheckersLogic logic;
     private CheckersGUI checkersGUI;
-    private InputManager PlayerInput;
+    private InputManager playerInput;
     private NetInputManager opponentInput;
 
+    public CheckersGame(InputManager playerInput, NetInputManager opponentInput, CheckersGUI checkersGUI) {
+        logic = new CheckersLogic();
+        this.playerInput = playerInput;
+        this.opponentInput = opponentInput;
+        this.checkersGUI = checkersGUI;
+        
+        playerInput.addLogic(logic);
+
+        playerInput.connectPlayer();
+
+    }
 
     public void reset() {
     }
