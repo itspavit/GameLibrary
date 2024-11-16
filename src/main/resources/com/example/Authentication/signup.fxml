@@ -14,7 +14,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="251.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" textAlignment="CENTER" wrappingWidth="97.2109375">
+            <Text layoutX="250.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" textAlignment="CENTER" wrappingWidth="97.2109375">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -30,7 +30,7 @@
             <Button layoutX="270.0" layoutY="297.0" mnemonicParsing="false" text="Sign up" />
             <PasswordField layoutX="268.0" layoutY="200.0" promptText="Password" />
             <PasswordField layoutX="268.0" layoutY="246.0" promptText="Confirm password" />
-            <Label fx:id="loginLabel" layoutX="371.0" layoutY="359.0" onMouseClicked="#toLoginScreen" text="Login" textFill="#6890eb" />
+            <Label fx:id="loginLabel" layoutX="371.0" layoutY="359.0" onMouseClicked="#toLoginPage" text="Login" textFill="#6890eb" />
          </children>
       </AnchorPane>
    </center>

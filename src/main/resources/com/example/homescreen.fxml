@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.HomeScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.HomeScreenController">
     <children>
         <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="25.0" prefWidth="600.0">
             <menus>
@@ -41,7 +41,7 @@
                         <Button fx:id="gameLibraryButton" layoutX="82.0" layoutY="89.0" mnemonicParsing="false" onMouseClicked="#toGameLibrary" prefHeight="26.0" prefWidth="177.0" text="Game Library" />
                         <Button fx:id="profileButton" layoutX="82.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#toProfilePage" prefHeight="26.0" prefWidth="177.0" text="Profile" />
                         <Button fx:id="friendsButton" layoutX="82.0" layoutY="151.0" mnemonicParsing="false" onMouseClicked="#toFriendsPage" prefHeight="26.0" prefWidth="177.0" text="Friends" />
-                        <Button fx:id="settingButton" layoutX="82.0" layoutY="182.0" mnemonicParsing="false" onMouseClicked="#toSettingsPage" prefHeight="26.0" prefWidth="177.0" text="Setting" />
+                        <Button fx:id="settingButton" layoutX="82.0" layoutY="182.0" mnemonicParsing="false" onMouseClicked="#toSettingsPage" prefHeight="26.0" prefWidth="177.0" text="Settings" />
                   <Button fx:id="logoutButton" layoutX="82.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#toLoginPage" prefHeight="26.0" prefWidth="177.0" text="Log Out" />
                     </children>
                 </AnchorPane>
