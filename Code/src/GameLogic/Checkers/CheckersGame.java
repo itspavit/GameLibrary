@@ -7,14 +7,15 @@ public class CheckersGame {
     private NetInputManager opponentInput;
 
     public CheckersGame(InputManager playerInput, NetInputManager opponentInput, CheckersGUI checkersGUI) {
-        logic = new CheckersLogic();
+        logic = new CheckersLogic(ETurn.PLAYER);
         this.playerInput = playerInput;
         this.opponentInput = opponentInput;
         this.checkersGUI = checkersGUI;
-        
-        playerInput.addLogic(logic);
 
-        playerInput.connectPlayer();
+        playerInput.addLogic(logic);
+        opponentInput.addLogic(logic);
+        checkersGUI.addLogic(logic);
+
 
     }
 
