@@ -28,7 +28,10 @@
                               <Image url="@../../images/user.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="editProfileButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toEditProfilePage" text="Edit Profile" />
+                        <Button fx:id="editProfileButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toEditProfilePage" text="Edit Profile">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="238.0" prefWidth="229.0">
@@ -40,7 +43,7 @@
                         </Label>
                         <HBox prefHeight="19.0" prefWidth="229.0">
                            <children>
-                              <Label alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="162.0" text="[user status]">
+                              <Label alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="162.0" text="is online">
                                  <graphic>
                                     <Circle fill="#1fbc2a" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                                  </graphic>
@@ -51,7 +54,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="53.0" layoutY="387.0" prefHeight="167.0" prefWidth="690.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 12;">
+            <HBox layoutX="53.0" layoutY="387.0" prefHeight="167.0" prefWidth="690.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 12; -fx-padding: 20; -fx-background-radius: 10;">
                <children>
                   <TextArea prefHeight="197.0" prefWidth="690.0" promptText="Tell us a bit about yourself and what games you enjoy!">
                      <font>
@@ -104,7 +107,10 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Button layoutX="672.0" layoutY="569.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Save" />
+            <Button layoutX="672.0" layoutY="569.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Save">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children></AnchorPane>
   </content>
 </ScrollPane>

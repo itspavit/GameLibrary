@@ -3,6 +3,7 @@ package com.example;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -11,8 +12,10 @@ import javafx.scene.input.MouseEvent;
 
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     @FXML
     private TextField usernameField;
@@ -28,32 +31,37 @@ public class LoginController {
     private Label signUpLabel;
 
     @FXML
-    void toggleButton(ActionEvent event) { //visibility of password
-        // Check the state of the toggle button
+    public void handleToggleButtonClick(ActionEvent event){
+        if(toggleButton.isSelected()){
+            passwordTextField.setText(passwordField.getText());
+            passwordTextField.setVisible(true);
+            passwordField.setVisible(false);
+        } else {
+
+            passwordField.setText(passwordTextField.getText());
+            passwordField.setVisible(true);
+            passwordTextField.setVisible(false);
+        }
     }
 
 
     @FXML
-    void userSignIn(ActionEvent event) { // called when user clicks "sign in"
-        // Stuff will happen
+        private void toSignUpPage () {
+            Utility.loadPage("/com/example/Authentication/signup.fxml", (Stage) signUpLabel.getScene().getWindow());
+        }
+
+        @FXML
+        private void toHomePage () {
+            Utility.loadPage("homescreen.fxml", (Stage) signInButton.getScene().getWindow());
+        }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        passwordTextField.setVisible(false); // Start with the hidden password
+
     }
-
-    @FXML
-    void forgotPassword(MouseEvent event) {
-        // Handle forgot password action here
-    }
-
-    @FXML
-    private void toSignUpPage() {
-        Utility.loadPage("/com/example/Authentication/signup.fxml", (Stage) signUpLabel.getScene().getWindow());
-    }
-
-
-    @FXML
-    private void toHomePage() {
-        Utility.loadPage("homescreen.fxml", (Stage) signInButton.getScene().getWindow());
-    }
-
 }
 
 
