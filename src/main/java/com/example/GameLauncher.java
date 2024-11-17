@@ -1,13 +1,38 @@
 package com.example;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class GameLauncher {
+
+
+    public TextArea TTTGameBox;
+    public Button TTTMoveLeft;
+    public Button TTTMoveUp;
+    public Button TTTMoveRight;
+    public Button TTTMoveDown;
+    public Button TTTPlacePiece;
+    public Button TTTMessageSent;
+    public TextArea CHGameBox;
+    public Button CHMoveLeft;
+    public Button CHMoveUp;
+    public Button CHMoveRight;
+    public Button CHMoveDown;
+    public Button CHPlacePiece;
+    public Button CHMessageSent;
+    public Button CMoveLeft;
+    public Button CMoveUp;
+    public Button CMoveRight;
+    public Button CMoveDown;
+    public Button CPlacePiece;
+    public Button CMessageSent;
 
     public void openGame(String gameName, Stage stage) {
         String fxmlFile;
@@ -38,4 +63,5 @@ public class GameLauncher {
             System.out.println("Error loading game screen for " + gameName);
         }
     }
+
 }
