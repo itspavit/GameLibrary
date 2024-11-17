@@ -33,16 +33,6 @@ public class SignUpController {
     private Label loginLabel;
 
 
-
-    public void handleSignup(){
-
-        String username = usernameTextField.getText().trim();
-        String email = emailTextField.getText().trim();
-        String password = passwordField.getText().trim();
-        String confirmPassword = confirmPasswordField.getText().trim();
-
-    }
-
     @FXML
     public void handleToggleButtonClick(MouseEvent event) {
         // Determine which toggle button was clicked and call the helper method
