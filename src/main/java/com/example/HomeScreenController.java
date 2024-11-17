@@ -13,7 +13,7 @@ public class HomeScreenController {
     @FXML
     private Button friendsButton;
     @FXML
-    private Button settingButton;
+    private Button settingsButton;
     @FXML
     private Button logoutButton;
     @FXML
@@ -35,7 +35,7 @@ public class HomeScreenController {
     }
     @FXML
     private void toSettingsPage() {
-        Utility.loadPage("setting.fxml", (Stage) settingButton.getScene().getWindow());
+        Utility.loadPage("settings.fxml", (Stage) settingsButton.getScene().getWindow());
     }
 
 

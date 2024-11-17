@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Line?>
@@ -12,25 +13,37 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SignUpController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="usernameField" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <TextField fx:id="confirmPasswordTextField" layoutX="268.0" layoutY="246.0" promptText="Confirm Password" />
+            <TextField fx:id="passwordTextField" layoutX="268.0" layoutY="200.0" prefHeight="22.0" prefWidth="160.0" promptText="Password" />
             <Text layoutX="250.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" textAlignment="CENTER" wrappingWidth="97.2109375">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="178.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-            <Text layoutX="191.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+            <Text layoutX="177.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+            <Text layoutX="191.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
             <Text layoutX="179.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
             <Text layoutX="156.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" />
-            <Text layoutX="228.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account? " />
+            <Text layoutX="216.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account? " />
             <Line endX="152.5" layoutX="299.0" layoutY="346.0" startX="-152.5" />
-            <TextField layoutX="268.0" layoutY="96.0" promptText="Username" />
-            <TextField layoutX="268.0" layoutY="146.0" promptText="Email" />
-            <Button layoutX="270.0" layoutY="297.0" mnemonicParsing="false" text="Sign up" />
-            <PasswordField layoutX="268.0" layoutY="200.0" promptText="Password" />
-            <PasswordField layoutX="268.0" layoutY="246.0" promptText="Confirm password" />
-            <Label fx:id="loginLabel" layoutX="371.0" layoutY="359.0" onMouseClicked="#toLoginPage" text="Login" textFill="#6890eb" />
+            <TextField fx:id="usernameTextField" layoutX="268.0" layoutY="109.0" promptText="Username" />
+            <TextField fx:id="emailTextField" layoutX="267.0" layoutY="154.0" promptText="Email" />
+            <Button fx:id="signUpButton" layoutX="270.0" layoutY="297.0" mnemonicParsing="false" onAction="#toHomePage" text="Sign up" />
+            <PasswordField fx:id="passwordField" layoutX="268.0" layoutY="200.0" prefHeight="26.0" prefWidth="160.0" promptText="Password" />
+            <PasswordField fx:id="confirmPasswordField" layoutX="268.0" layoutY="246.0" prefHeight="26.0" prefWidth="160.0" promptText="Confirm Password" />
+            <Label fx:id="loginLabel" layoutX="359.0" layoutY="360.0" onMouseClicked="#toLoginPage" text="Login" textFill="#6ba1e8" />
+            <ToggleButton fx:id="showToggleButton1" layoutX="435.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#handleToggleButtonClick" prefHeight="26.0" prefWidth="48.0" text="Show">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </ToggleButton>
+            <ToggleButton fx:id="showToggleButton2" layoutX="435.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#handleToggleButtonClick" prefHeight="26.0" prefWidth="48.0" text="Show">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </ToggleButton>
          </children>
       </AnchorPane>
    </center>
