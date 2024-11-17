@@ -41,7 +41,7 @@
                <effect>
                   <ColorAdjust />
                </effect></Button>
-            <Label fx:id="forgotPasswordLabel" layoutX="135.0" layoutY="209.0" onMouseClicked="#toRecoverAccountPage" text="Forgot password?" textFill="#6ba1e8">
+            <Label fx:id="forgotPasswordLabel" layoutX="139.0" layoutY="221.0" onMouseClicked="#toRecoverAccountPage" text="Forgot your password?" textFill="#6ba1e8">
                <font>
                   <Font size="12.0" />
                </font>

@@ -12,7 +12,8 @@ public class EditProfile {
 
     @FXML
     private void toProfilePage() {
-        Utility.loadPage("profilepage.fxml", (Stage) backButton.getScene().getWindow());
+        Utility.loadPage("profilepage.fxml",
+                (Stage) backButton.getScene().getWindow());
     }
 
 }

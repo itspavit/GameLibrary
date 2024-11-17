@@ -1,19 +1,15 @@
 package com.example;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -61,6 +57,7 @@ public class LoginController implements Initializable {
     private void toHomePage() {
 
         String username = usernameField.getText().trim();
+        String capitalizedUsername = username.toUpperCase();
         String password = passwordField.getText().trim();
         if (username.isEmpty() || password.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -69,10 +66,20 @@ public class LoginController implements Initializable {
             alert.setContentText("Both username and password fields must be filled out!");
             alert.showAndWait();
 
-        }else{
-            Utility.loadPage("homescreen.fxml",
-                    (Stage) signInButton.getScene().getWindow());
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("homescreen.fxml"));
+                Parent root = loader.load();
+                HomeScreenController homeController = loader.getController();
+                homeController.displayName(capitalizedUsername);
 
+                Stage stage = (Stage) signInButton.getScene().getWindow();
+                Scene scene = new Scene(root);  // Create new Scene with the root
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -81,7 +88,6 @@ public class LoginController implements Initializable {
         Utility.loadPage("/com/example/Authentication/signup.fxml",
                 (Stage) signUpLabel.getScene().getWindow());
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

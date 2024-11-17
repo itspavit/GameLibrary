@@ -2,6 +2,7 @@ package com.example;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class HomeScreenController {
@@ -16,6 +17,14 @@ public class HomeScreenController {
     private Button settingsButton;
     @FXML
     private Button logoutButton;
+    @FXML
+    private Label welcomeLabel;
+
+
+    public void displayName( String username){
+        welcomeLabel.setText("Welcome " + username);
+
+    }
     @FXML
     private void toGameLibrary() {
         Utility.loadPage("gameLibrary.fxml", (Stage) gameLibraryButton.getScene().getWindow());

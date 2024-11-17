@@ -4,18 +4,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RecoverAccountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RecoverAccountController">
    <children>
-      <AnchorPane layoutX="101.0" layoutY="192.0" prefHeight="185.0" prefWidth="413.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D3D3D3; -fx-background-radius: 20;">
+      <AnchorPane layoutX="94.0" layoutY="156.0" prefHeight="201.0" prefWidth="413.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #D3D3D3; -fx-background-radius: 10; -fx-border-radius: 10;">
          <children>
-            <ToggleButton contentDisplay="BOTTOM" layoutX="38.0" layoutY="130.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="344.0" style="-fx-background-color: #6ba1e8;" text="Submit" />
-            <TextField layoutX="38.0" layoutY="78.0" prefHeight="30.0" prefWidth="344.0" promptText="Enter Your Email" />
-            <Label layoutX="44.0" layoutY="40.0" prefHeight="17.0" prefWidth="293.0" text="Enter your email to recover your account">
+            <ToggleButton contentDisplay="BOTTOM" layoutX="38.0" layoutY="121.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="344.0" style="-fx-background-color: #6ba1e8; -fx-background-radius: 5;" text="Reset">
+               <effect>
+                  <Glow level="0.16" />
+               </effect></ToggleButton>
+            <TextField layoutX="38.0" layoutY="79.0" prefHeight="28.0" prefWidth="344.0" promptText="Enter your email" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="36.0" prefHeight="18.0" prefWidth="344.0" text="Forgot your password?" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
@@ -27,7 +30,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Text layoutX="188.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recover Your Account">
+      <Text layoutX="188.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recover Your Account">
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Text>
@@ -36,14 +39,5 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <HBox alignment="CENTER" layoutX="102.0" layoutY="153.0" prefHeight="26.0" prefWidth="413.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-color: #D3D3D3;">
-         <children>
-            <Label alignment="CENTER" text="Email Verification">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
    </children>
 </AnchorPane>
