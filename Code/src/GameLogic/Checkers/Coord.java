@@ -11,4 +11,9 @@ public class Coord {
     public boolean equals(Coord obj) {
        return obj.x==x && obj.y == y;
     }
+
+    @Override
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
 }

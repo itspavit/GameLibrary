@@ -3,6 +3,7 @@ package GameLogic.Checkers;
 import java.util.ArrayList;
 
 public abstract class CheckersPiece {
+
     private Coord position;
     private ArrayList<CheckersPiece> gamePieces = new ArrayList<>();
 
@@ -21,5 +22,8 @@ public abstract class CheckersPiece {
 
     public Coord getPosition() {
         return position;
+    }
+    public void setPosition(Coord position) {
+        this.position = position;
     }
 }

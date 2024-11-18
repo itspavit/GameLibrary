@@ -10,8 +10,23 @@ public class NetInputManager {
         this.logic = logic;
     }
 
-    public void simulateInput(String substring) {
-        System.out.println("doing stuff "+ substring);
+    public void simulateInput(String str) {
+        if (str.length() != 5) {
+            System.out.println("invalid input:" + str);
+            return;
+        }
+        String start = str.substring(0, 2);
+        String end = str.substring(3, 5);
+        System.out.println("opponent input:" + str + " start:" + start + " end:" + end);
+        if (!logic.opponentMove(coordFromInput(start), coordFromInput(end))) {
+            System.out.println(str + " is not a playable move");
+        }
+    }
+
+    private Coord coordFromInput(String s) {
+        int x = Integer.parseInt(String.valueOf(s.charAt(0)));
+        int y = Integer.parseInt(String.valueOf(s.charAt(1)));
+        return new Coord(x, y);
     }
 
 }
