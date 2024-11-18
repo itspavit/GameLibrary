@@ -17,6 +17,11 @@ public class CheckersLogic {
 
     }
     public synchronized boolean playerMove(Coord start, Coord dest){
+        CheckersPiece piece = getPiece(start);
+        if(piece == null){
+            return false;
+        }
+        System.out.println("piece:"+piece.getType());
         return true;
     }
     public synchronized boolean opponentMove(Coord start, Coord dest){
@@ -25,6 +30,11 @@ public class CheckersLogic {
     private void jumpPiece(CheckersPiece piece){
     }
     public CheckersPiece getPiece(Coord location){
+        for(CheckersPiece p : pieces){
+            if (p.getPosition().equals(location)){
+                return p;
+            }
+        }
         return  null;
     }
     public ArrayList<CheckersPiece> getPieces() {

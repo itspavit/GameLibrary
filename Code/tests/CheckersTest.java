@@ -1,7 +1,4 @@
-import GameLogic.Checkers.CheckersGUI;
-import GameLogic.Checkers.CheckersGame;
-import GameLogic.Checkers.InputManager;
-import GameLogic.Checkers.NetInputManager;
+import GameLogic.Checkers.*;
 
 import java.util.Scanner;
 

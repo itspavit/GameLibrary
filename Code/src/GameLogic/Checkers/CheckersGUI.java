@@ -26,21 +26,21 @@ public class CheckersGUI {
 
             switch (p.getType()) {
                 case Player:
-                    board[x][y] = 'x';
+                    board[y][x] = 'x';
                     break;
                 case PlayerKing:
-                    board[x][y] = 'X';
+                    board[y][x] = 'X';
                     break;
                 case Opponent:
-                    board[x][y] = 'o';
+                    board[y][x] = 'o';
                     break;
                 case OpponentKing:
-                    board[x][y] = 'O';
+                    board[y][x] = 'O';
                     break;
             }
         }
 
-        String output = "  A B C D E F G H \n  ----------------\n";
+        String output = "  0 1 2 3 4 5 6 7 \n  ----------------\n";
         for (int x = 0; x < 8; x++) {
             String line = x + "|";
             for (int y = 0; y < 8; y++) {
