@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SignUpController">
    <center>
-      <AnchorPane fx:id="usernameField" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="usernameField" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="confirmPasswordTextField" layoutX="268.0" layoutY="246.0" promptText="Confirm Password" />
             <TextField fx:id="passwordTextField" layoutX="268.0" layoutY="200.0" prefHeight="22.0" prefWidth="160.0" promptText="Password" />
@@ -33,7 +33,7 @@
             <Button fx:id="signUpButton" layoutX="270.0" layoutY="297.0" mnemonicParsing="false" onAction="#toHomePage" text="Sign up" />
             <PasswordField fx:id="passwordField" layoutX="268.0" layoutY="200.0" prefHeight="26.0" prefWidth="160.0" promptText="Password" />
             <PasswordField fx:id="confirmPasswordField" layoutX="268.0" layoutY="246.0" prefHeight="26.0" prefWidth="160.0" promptText="Confirm Password" />
-            <Label fx:id="loginLabel" layoutX="359.0" layoutY="360.0" onMouseClicked="#toLoginPage" text="Login" textFill="#6ba1e8" />
+            <Label fx:id="loginLabel" layoutX="359.0" layoutY="360.0" onMouseClicked="#toLoginPage" text="Login" textFill="#aeac29" />
             <ToggleButton fx:id="showToggleButton1" layoutX="435.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#handleToggleButtonClick" prefHeight="26.0" prefWidth="48.0" text="Show">
                <font>
                   <Font size="12.0" />
