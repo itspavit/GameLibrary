@@ -9,6 +9,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ProfileController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ProfileController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="803.0" style="-fx-background-color: #FFFFFF;">
          <children>
@@ -24,27 +25,11 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <Label alignment="CENTER" layoutX="331.0" layoutY="507.0" prefHeight="23.0" prefWidth="124.0" text="Game History">
+            <Label alignment="CENTER" layoutX="325.0" layoutY="552.0" prefHeight="23.0" prefWidth="124.0" text="Game History">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <HBox layoutX="46.0" layoutY="560.0" prefHeight="38.0" prefWidth="687.0" style="-fx-background-color: #efefdb; -fx-border-color: #D3D3D3; -fx-background-radius: 20; -fx-border-radius: 20;">
-               <children>
-                  <VBox prefHeight="36.0" prefWidth="216.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="36.0" prefWidth="196.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="23.0" prefWidth="192.0" text="Chess : Win">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </children></HBox>
             <MenuBar fx:id="menuBar" layoutX="648.0" layoutY="25.0" prefHeight="25.0" prefWidth="98.0" style="-fx-background-radius: 10; -fx-background-color: #cbc928;">
               <menus>
                 <Menu mnemonicParsing="false">
@@ -64,7 +49,7 @@
                 <Menu mnemonicParsing="false">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Settings" />
-                        <MenuItem mnemonicParsing="false" text="Logout" />
+                        <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#toLoginPage" text="Logout" />
                   </items>
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -77,26 +62,26 @@
               </menus>
             </MenuBar>
             <TextField layoutX="132.0" layoutY="25.0" prefHeight="33.0" prefWidth="508.0" promptText="Search Profiles" />
-            <Label alignment="CENTER" layoutX="335.0" layoutY="691.0" prefHeight="23.0" prefWidth="130.0" text="Statistics">
+            <Label alignment="CENTER" layoutX="323.0" layoutY="760.0" prefHeight="23.0" prefWidth="130.0" text="Statistics">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ListView layoutX="58.0" layoutY="743.0" prefHeight="150.0" prefWidth="691.0" style="-fx-border-radius: 20; -fx-background-radius: 20;" />
-            <ToggleButton layoutX="594.0" layoutY="431.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-radius: 20; -fx-background-color: #aeac29;" text="Add Friend" textFill="WHITE" />
-            <VBox alignment="CENTER" layoutX="35.0" layoutY="96.0" prefHeight="379.0" prefWidth="402.0" style="-fx-background-color: #efefdb; -fx-background-radius: 20; -fx-border-color: #D3D3D3; -fx-border-radius: 20;">
+            <ListView layoutX="28.0" layoutY="815.0" prefHeight="150.0" prefWidth="712.0" style="-fx-border-radius: 20; -fx-background-radius: 20;" />
+            <ToggleButton layoutX="603.0" layoutY="433.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" style="-fx-background-radius: 20; -fx-background-color: #aeac29;" text="Add Friend" textFill="WHITE" />
+            <VBox alignment="CENTER" layoutX="35.0" layoutY="96.0" prefHeight="421.0" prefWidth="417.0" style="-fx-background-color: #efefdb; -fx-background-radius: 20; -fx-border-color: #D3D3D3; -fx-border-radius: 20;">
                <children>
-                  <Button fx:id="editProfileButton" alignment="TOP_CENTER" mnemonicParsing="false" onMouseClicked="#toEditProfilePage" prefHeight="19.0" prefWidth="82.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" text="Edit Profile" />
-                  <ImageView fitHeight="156.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profileAvatarImageView" fitHeight="169.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/user.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="291.0" text="[USERNAME]">
+                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="291.0" text="[USERNAME]">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
+                  <Button fx:id="editProfileButton" alignment="TOP_CENTER" mnemonicParsing="false" onMouseClicked="#toEditProfilePage" prefHeight="19.0" prefWidth="82.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" text="Edit Profile" />
                   <Label alignment="CENTER" prefHeight="84.0" prefWidth="366.0" text="Tell us a bit about yourself and what games you enjoy!">
                      <font>
                         <Font size="15.0" />
@@ -104,11 +89,11 @@
                   </Label>
                </children>
             </VBox>
-            <HBox layoutX="469.0" layoutY="238.0" prefHeight="169.0" prefWidth="245.0" style="-fx-border-color: #D3D3D3; -fx-border-radius: 30;">
+            <HBox layoutX="484.0" layoutY="237.0" prefHeight="169.0" prefWidth="245.0" style="-fx-border-color: #D3D3D3; -fx-border-radius: 30;">
                <children>
                   <VBox alignment="CENTER" prefHeight="119.0" prefWidth="124.0">
                      <children>
-                        <Label text="Public">
+                        <Label prefHeight="23.0" prefWidth="47.0" text="Public">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -117,7 +102,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="172.0" prefWidth="154.0">
                      <children>
-                        <Label text="[ ] Friends">
+                        <Label fx:id="friendCountLabel" prefHeight="23.0" prefWidth="81.0" text="[ ] Friends">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -126,23 +111,10 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="46.0" layoutY="617.0" prefHeight="38.0" prefWidth="687.0" style="-fx-background-color: #efefdb; -fx-border-color: #D3D3D3; -fx-background-radius: 20; -fx-border-radius: 20;">
-               <children>
-                  <VBox prefHeight="36.0" prefWidth="196.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="36.0" prefWidth="226.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="23.0" prefWidth="172.0" text="Checkers : Tie">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
+            <ListView fx:id="gameHistoryListView" editable="true" fixedCellSize="50.0" layoutX="28.0" layoutY="586.0" prefHeight="150.0" prefWidth="712.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: #D3D3D3;">
+               <effect>
+                  <Glow />
+               </effect></ListView>
          </children></AnchorPane>
   </content>
 </ScrollPane>
