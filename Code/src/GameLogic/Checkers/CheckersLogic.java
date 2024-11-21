@@ -44,8 +44,9 @@ public class CheckersLogic {
 
     /**
      * general rules for both players (eg. only moving 1 space, destination is empty, etc.)
+     *
      * @param start location of the piece to move
-     * @param dest where the piece is moving
+     * @param dest  where the piece is moving
      * @return if the move is successful
      */
     private boolean doGeneralRules(Coord start, Coord dest) {
@@ -57,27 +58,51 @@ public class CheckersLogic {
         }
         int xDiff = Math.abs(start.x - dest.x);
         int yDiff = Math.abs(start.y - dest.y);
-        // normal moves can only be 1 space diagonally
-        if ((xDiff != 1 || yDiff != 1) && !jumpPiece(start, dest)){
-            System.out.println("move must be 1 space diagonally or a jump");
-            return  false;
-        }
-        System.out.println("moving piece:" + piece.getType() + " to " + dest);
-        piece.setPosition(dest);
-        return true;
-
-    }
-    private boolean jumpPiece(Coord start, Coord dest) {
-        CheckersPiece piece = getPiece(dest);
-        int xdiff = Math.abs(start.x - dest.x);
-        int ydiff = Math.abs(start.y - dest.y);
-        if (xdiff == 2 || ydiff == 2) {
-            System.out.println("jumping xdiff:"+xdiff+" ydiff:"+ydiff);
+        // jumping if they move 2 spacess
+        if (xDiff == 2 && yDiff == 2) {
+            if(!jumpPiece(start, dest)) {
+                return false;
+            }
+            piece.setPosition(dest);
             return true;
         }
-        System.out.println("not a valid jump xdiff:"+xdiff+" ydiff:"+ydiff);
+        // doing a normal move it they go 1 space
+        if (xDiff == 1 && yDiff == 1) {
+
+            System.out.println("moving piece:" + piece.getType() + " to " + dest);
+            piece.setPosition(dest);
+            return true;
+        }
+        //returning false if they move any other way
         return false;
 
+    }
+
+    private boolean jumpPiece(Coord start, Coord dest) {
+        CheckersPiece piece = getPiece(start);
+        int moveX=  dest.x-start.x; // will be +/- 2 depending on jump direction
+        int moveY= dest.y - start.y; // will be +/- 2 depending on jump direction
+        Coord jumpLoc = new Coord(moveX/2+start.x, moveY/2+start.y);
+        CheckersPiece jumpedPiece =getPiece(jumpLoc);
+        if(jumpedPiece==null){
+            System.out.println("there is no piece to jump at " + jumpLoc);
+            return false;
+        }
+        // the player can't jump their own pieces
+        if((piece.getType()==EPieceTypes.Player || piece.getType()==EPieceTypes.PlayerKing)
+                && (jumpedPiece.getType()==EPieceTypes.Player || jumpedPiece.getType()==EPieceTypes.PlayerKing)){
+            return false;
+        }
+        // neither can the opponent
+        if((piece.getType()==EPieceTypes.Opponent|| piece.getType()==EPieceTypes.OpponentKing)
+                && (jumpedPiece.getType()==EPieceTypes.Opponent|| jumpedPiece.getType()==EPieceTypes.OpponentKing)){
+            return false;
+        }
+
+        // removing the jumped piece
+        System.out.println("jumping " + jumpedPiece.getType() + " at " + jumpLoc);
+        pieces.remove(jumpedPiece);
+        return true;
     }
 
     public CheckersPiece getPiece(Coord location) {
