@@ -19,6 +19,11 @@ public class CheckersLogic {
 
     public synchronized boolean playerMove(Coord start, Coord dest) {
         CheckersPiece piece = getPiece(start);
+        // can't play on the other player's turn
+        if(turn==ETurn.OPPONENT){
+            System.out.println("not your turn!");
+            return false;
+        }
         //the player can only move their own pieces
         if (piece.getType() != EPieceTypes.Player && piece.getType() != EPieceTypes.PlayerKing) {
             System.out.println("can't move opponent pieces");
@@ -29,17 +34,30 @@ public class CheckersLogic {
             System.out.println("normal pices can't move backwards");
             return false;
         }
-        return doGeneralRules(start, dest);
+        if(doGeneralRules(start, dest)){
+            turn = ETurn.OPPONENT;
+            return true;
+        }
+        return false;
     }
 
     public synchronized boolean opponentMove(Coord start, Coord dest) {
         CheckersPiece piece = getPiece(start);
+        if(turn==ETurn.PLAYER){
+            return false;
+        }
         if (piece.getType() != EPieceTypes.Opponent && piece.getType() != EPieceTypes.OpponentKing) {
             return false;
         }
-        System.out.println("moving piece:" + piece.getType() + " to " + dest);
-        piece.setPosition(dest);
-        return true;
+        if (piece.getType() == EPieceTypes.Opponent&& start.y > dest.y) {
+            System.out.println("normal pices can't move backwards");
+            return false;
+        }
+        if(doGeneralRules(start, dest)){
+            turn = ETurn.PLAYER;
+            return true;
+        }
+        return false;
     }
 
     /**
