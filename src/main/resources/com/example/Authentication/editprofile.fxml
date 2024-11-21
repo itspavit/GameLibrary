@@ -21,12 +21,12 @@
          </font></Text>
       <TextField layoutX="370.0" layoutY="312.0" prefHeight="26.0" prefWidth="176.0" promptText="Email" />
       <TextField layoutX="371.0" layoutY="365.0" prefHeight="26.0" prefWidth="175.0" promptText="Username" />
-      <ImageView fitHeight="119.0" fitWidth="102.0" layoutX="398.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="changeAvatarImageView" fitHeight="119.0" fitWidth="102.0" layoutX="398.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/user.png" />
          </image>
       </ImageView>
-      <Button layoutX="398.0" layoutY="242.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Change avatar" />
+      <Button fx:id="changeAvatarButton" layoutX="398.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#changeAvatarButtonClicked" prefHeight="26.0" prefWidth="102.0" text="Change avatar" />
       <Label layoutX="274.0" layoutY="317.0" text="Email">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -40,12 +40,12 @@
             <Font name="System Bold" size="13.0" />
          </font></Label>
       <TextField alignment="TOP_LEFT" layoutX="371.0" layoutY="429.0" prefHeight="111.0" prefWidth="175.0" promptText="Bio" />
-      <Button layoutX="398.0" layoutY="646.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #cbc928; -fx-background-radius: 30;" text="Update Profile" />
+      <Button fx:id="updateProfileButton" layoutX="398.0" layoutY="646.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Update Profile" />
       <VBox layoutX="-4.0" prefHeight="703.0" prefWidth="217.0" style="-fx-background-color: #efefdb; -fx-padding: 50;">
          <children>
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="148.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="displayImageView" fitHeight="148.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/user.png" />
                      </image>
