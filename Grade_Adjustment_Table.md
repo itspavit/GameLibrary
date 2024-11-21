@@ -14,4 +14,7 @@
 | Andy Idiagbor  | 0          | Attended all meetings and met expectations on time.|
 | Aluda Galla    | 0          | Attended all meetings and met expectations on time.|
 | Milan Uyeno    | 0          | Attended all meetings and met expectations on time.|
-| Yun Kim        | 0          | Attended all meetings and met expectations on time.|
+| Aiden Chahal   | 0          | Completed all required work.                       |
+| Kiyan Merali   | 0          | Completed all required work.                       |
+| George Mi      | 0          | Completed all required work.                       |
+| Pavit Bhagat   | 0          | Completed all required work.                       |
