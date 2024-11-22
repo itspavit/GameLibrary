@@ -37,7 +37,8 @@
                                 <Font size="7.0" />
                             </font>
                         </Button>
-                        <Button fx:id="CPlacePiece" layoutX="184.0" layoutY="285.0" mnemonicParsing="false" text="Place Piece" />
+                        <Button fx:id="CPlacePiece" layoutX="184.0" layoutY="269.0" mnemonicParsing="false" text="Place Piece" />
+                  <Button fx:id="ResignGame" layoutX="184.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Resign" />
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
