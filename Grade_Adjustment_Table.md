@@ -14,6 +14,7 @@
 | Andy Idiagbor  | 0          | Attended all meetings and met expectations on time.|
 | Aluda Galla    | 0          | Attended all meetings and met expectations on time.|
 | Milan Uyeno    | 0          | Attended all meetings and met expectations on time.|
+| Yun Kim        | 0          | Attended all meetings and met expectations on time.|
 | Aiden Chahal   | 0          | Completed all required work.                       |
 | Kiyan Merali   | 0          | Completed all required work.                       |
 | George Mi      | 0          | Completed all required work.                       |
@@ -22,3 +23,5 @@
 | Mustafa Amer   | 0          | Consistently met deadlines and team expectations.  |
 | Matthew Cuffe  | 0          | Consistently met deadlines and team expectations.  |
 | Tania Rizwan   | 0          | Consistently met deadlines and team expectations.  |
+| Tanjib Riasat  | -9         | Did not contribute to any part of the project.     |
+| Daniel Yukashev| -9         | Did not contribute to any part of the project.     |
