@@ -18,3 +18,7 @@
 | Kiyan Merali   | 0          | Completed all required work.                       |
 | George Mi      | 0          | Completed all required work.                       |
 | Pavit Bhagat   | 0          | Completed all required work.                       |
+| Cindy Pham     | 0          | Consistently met deadlines and team expectations.  |
+| Mustafa Amer   | 0          | Consistently met deadlines and team expectations.  |
+| Matthew Cuffe  | 0          | Consistently met deadlines and team expectations.  |
+| Tania Rizwan   | 0          | Consistently met deadlines and team expectations.  |
