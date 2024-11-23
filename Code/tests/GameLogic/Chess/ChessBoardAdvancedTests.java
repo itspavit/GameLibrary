@@ -1,0 +1,116 @@
+package GameLogic.Chess;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class ChessBoardAdvancedTests {
+    private ChessBoard board;
+    private Coordinate coordinate;
+    private Coordinate coordinate2;
+
+    @Before
+    public void setup(){
+        board = new ChessBoard(true);
+        for (int i = 0; i <= 7; i++){
+            for (int j = 0; j <= 7; j++){
+                coordinate = new Coordinate(i, j);
+                board.ClearSquare(coordinate);
+            }
+
+        }
+    }
+
+    @Test
+    public void clearBoard(){
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                coordinate = new Coordinate(i, j);
+                assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+            }
+        }
+    }
+
+    @Test
+    public void pawnMove(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 2);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.PAWN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.PAWN);
+    }
+
+    @Test
+    public void pawnDoubleMove(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 3);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.PAWN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.PAWN);
+    }
+
+    @Test
+    public void pawnMoveInvalid(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 4);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.PAWN);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.OUT_OF_PIECE_RANGE);
+    }
+
+    @Test
+    public void pawnMoveBlocked(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 2);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        Pawn pawn2 = new Pawn(coordinate2, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.PAWN);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.PLACE_ON_OWN_PIECE);
+    }
+
+    @Test
+    public void pawnMoveCapture(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(1, 2);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        Pawn pawn2 = new Pawn(coordinate2, false, board, -1000);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.PAWN);
+    }
+
+    @Test
+    public void pawnMoveBlockedBlack(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 2);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        Pawn pawn2 = new Pawn(coordinate2, false, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.PAWN);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.OUT_OF_PIECE_RANGE);
+    }
+
+    @Test
+    public void pawnMovePromote(){
+        coordinate = new Coordinate(0, 6);
+        coordinate2 = new Coordinate(0, 7);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.PROMOTE_PAWN);
+    }
+
+    @Test
+    public void pawnCheck(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(1, 2);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        King king2 = new King(coordinate2, false, board, 8);
+        assertSame(board.GetGameStatus(), EGameState.P2_IN_CHECK);
+    }
+
+
+
+}
