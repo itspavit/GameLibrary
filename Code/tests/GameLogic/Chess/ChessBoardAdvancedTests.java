@@ -443,4 +443,95 @@ public class ChessBoardAdvancedTests {
         assertSame(board.GetGameStatus(), EGameState.P2_IN_CHECK);
     }
 
+    @Test
+    public void QueenMoveHorizontalR(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(7, 0);
+        Queen Queen = new Queen(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.QUEEN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.QUEEN);
+    }
+
+    @Test
+    public void QueenMoveHorizontalL(){
+        coordinate = new Coordinate(7, 0);
+        coordinate2 = new Coordinate(0, 0);
+        Queen Queen = new Queen(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.QUEEN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.QUEEN);
+    }
+
+    @Test
+    public void QueenMoveVerticalU(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(0, 7);
+        Queen Queen = new Queen(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.QUEEN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.QUEEN);
+    }
+
+    @Test
+    public void QueenMoveVerticalD(){
+        coordinate = new Coordinate(0, 7);
+        coordinate2 = new Coordinate(0, 0);
+        Queen Queen = new Queen(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.QUEEN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.QUEEN);
+    }
+
+    @Test
+    public void QueenMoveUR(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(7, 7);
+        Queen Queen= new Queen(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.QUEEN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.QUEEN);
+    }
+
+    @Test
+    public void QueenMoveUL(){
+        coordinate = new Coordinate(7, 0);
+        coordinate2 = new Coordinate(0, 7);
+        Queen Queen= new Queen(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.QUEEN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.QUEEN);
+    }
+
+
+    @Test
+    public void QueenMoveDR(){
+        coordinate = new Coordinate(0, 7);
+        coordinate2 = new Coordinate(7, 0);
+        Queen Queen= new Queen(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.QUEEN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.QUEEN);
+    }
+
+    @Test
+    public void QueenMoveDL(){
+        coordinate = new Coordinate(7, 7);
+        coordinate2 = new Coordinate(0, 0);
+        Queen Queen= new Queen(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.QUEEN);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.QUEEN);
+    }
+
+
+
 }
