@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="15" style="-fx-padding: 15; -fx-background-color: #f0f0f0; -fx-border-radius: 10; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.GameDetailsController">
+
+    <ImageView fx:id="gameImageView" fitHeight="200" fitWidth="300" style="-fx-border-color: #ddd; -fx-border-width: 1; -fx-border-radius: 5;">
+      <image>
+         <Image url="@../../images/placeholder.png" />
+      </image></ImageView>
+    <Label fx:id="gameTitle" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Game Name" />
+    <Label fx:id="gameDescription" text="Game Description..." />
+    <Label fx:id="gameRating" text="Rating : " />
+
+    <HBox alignment="CENTER" spacing="20">
+        <Button fx:id="leaderboardButton" onMouseClicked="#toLeaderboard" style="-fx-background-color: #5a9; -fx-text-fill: white;" text="Leaderboard" />
+        <Button onAction="#toGameScreen" style="-fx-background-color: #5a9; -fx-text-fill: white;" text="Play Game" />
+    </HBox>
+</VBox>

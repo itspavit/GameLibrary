@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: rgba(0, 0, 0, 0.3); -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <center>
+        <VBox fx:id="chatMessagesContainer" alignment="BOTTOM_LEFT" spacing="5" style="-fx-padding: 10;">
+            <Label style="-fx-text-fill: #FFFFFF; -fx-font-size: 12;" text="Player 1: hi" />
+            <Label style="-fx-font-size: 12;" text="Player 2 : hello" />
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-color: rgba(0, 0, 0, 0.6); -fx-background-radius: 5; -fx-padding: 5;">
+            <TextField fx:id="messageInputField" promptText="Press Enter to send..." style="-fx-background-color: transparent; -fx-text-fill: #FFFFFF; -fx-font-size: 12; -fx-padding: 5;" HBox.hgrow="ALWAYS" />
+        </HBox>
+    </bottom>
+</BorderPane>
+
