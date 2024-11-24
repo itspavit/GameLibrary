@@ -2,7 +2,7 @@ package GameLogic.Checkers;
 
 import java.util.Scanner;
 
-public class ConsoleTest {
+public class PlayInConsole {
     public static void main(String[] args) {
         InputManager playerInput = new InputManager();
         NetInputManager netInput = new NetInputManager();

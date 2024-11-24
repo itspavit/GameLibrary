@@ -82,6 +82,11 @@ public class CheckersLogic {
     private boolean doGeneralRules(Coord start, Coord dest, boolean playerTurn) {
         CheckersPiece piece = getPiece(start);
         // pieces cant move to an occupied space
+        if(dest.x>7 || dest.y>7 || dest.x<0 || dest.y<0) {
+
+            System.out.println(dest+" out of bounds");
+            return  false;
+        }
         if (getPiece(dest) != null) {
             System.out.println("there is already a piece at " + dest);
             return false;
@@ -93,7 +98,7 @@ public class CheckersLogic {
         if (xDiff == 1 && yDiff == 1) {
             // if a jump is available it must be taken
             for (CheckersPiece p : pieces) {
-                if (p.onPlayerTeam() == playerTurn && canJump(piece)) {
+                if (p.onPlayerTeam() == playerTurn && canJump(p)) {
                     System.out.println("can't do a normal move, piece at " + p.getPosition() + " can jump");
                     return false;
                 }
@@ -119,18 +124,18 @@ public class CheckersLogic {
         int y = piece.getPosition().y;
         if (piece.getType() == EPieceTypes.PlayerKing || piece.getType() == EPieceTypes.OpponentKing) {
             // check all diagonals for piece on other team
-            return (canJump(piece, new Coord(x - 1, y - 1)) ||
-                    canJump(piece, new Coord(x + 1, y - 1)) ||
-                    canJump(piece, new Coord(x - 1, y + 1)) ||
-                    canJump(piece, new Coord(x + 1, y + 1)));
+            return (canJump(piece, new Coord(x - 2, y - 2)) ||
+                    canJump(piece, new Coord(x + 2, y - 2)) ||
+                    canJump(piece, new Coord(x - 2, y + 2)) ||
+                    canJump(piece, new Coord(x + 2, y + 2)));
         }
         if (piece.getType() == EPieceTypes.Player) {
-            return (canJump(piece, new Coord(x - 1, y - 1)) ||
-                    canJump(piece, new Coord(x + 1, y - 1)));
+            return (canJump(piece, new Coord(x - 2, y - 2)) ||
+                    canJump(piece, new Coord(x + 2, y - 2)));
         }
         if (piece.getType() == EPieceTypes.Opponent) {
-            return (canJump(piece, new Coord(x - 1, y + 1)) ||
-                    canJump(piece, new Coord(x + 1, y + 1)));
+            return (canJump(piece, new Coord(x - 2, y + 2)) ||
+                    canJump(piece, new Coord(x + 2, y + 2)));
         }
         return false;
     }
@@ -141,10 +146,12 @@ public class CheckersLogic {
      * @return
      */
     private boolean canJump(CheckersPiece piece, Coord dest) {
-        Coord start = piece.getPosition();
-        int moveX = dest.x - start.x; // will be +/- 2 depending on jump direction
-        int moveY = dest.y - start.y; // will be +/- 2 depending on jump direction
-        Coord jumpedLoc = new Coord(moveX / 2 + start.x, moveY / 2 + start.y);
+        if(dest.x>7 || dest.y>7 || dest.x<0 || dest.y<0) {
+            return  false;
+        }
+        Coord pos = piece.getPosition();
+        // calculate the location of the jumped piece (pos + (movement/2))
+        Coord jumpedLoc= pos.add(dest.sub(pos).div(2));
         CheckersPiece jumpedPiece = getPiece(jumpedLoc);
         return jumpedPiece != null && jumpedPiece.onPlayerTeam() != piece.onPlayerTeam();
     }
