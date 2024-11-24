@@ -214,6 +214,94 @@ public class ChessBoardAdvancedTests {
     }
 
     @Test
+    public void KnightMoveURR(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(2, 1);
+        Knight knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
+    public void KnightMoveUUR(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(1, 2);
+        Knight knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
+    public void KnightMoveDRR(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(2, 0);
+        Knight knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
+    public void KnightMoveDDR(){
+        coordinate = new Coordinate(0, 2);
+        coordinate2 = new Coordinate(1, 0);
+        Knight knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
+    public void KnightMoveUUL(){
+        coordinate = new Coordinate(1, 0);
+        coordinate2 = new Coordinate(0, 2);
+        Knight knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
+    public void KnightMoveULL(){
+        coordinate = new Coordinate(2, 0);
+        coordinate2 = new Coordinate(0, 1);
+        Knight knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
+    public void KnightMoveDDL(){
+        coordinate = new Coordinate(1, 2);
+        coordinate2 = new Coordinate(0, 0);
+        Knight knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
+    public void KnightMoveDLL(){
+        coordinate = new Coordinate(2, 1);
+        coordinate2 = new Coordinate(0, 0);
+        Knight knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
     public void BishopMoveUR(){
         coordinate = new Coordinate(0, 0);
         coordinate2 = new Coordinate(7, 7);
