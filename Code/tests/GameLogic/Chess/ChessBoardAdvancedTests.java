@@ -302,6 +302,45 @@ public class ChessBoardAdvancedTests {
     }
 
     @Test
+    public void KnightMoveInvalid(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(0, 1);
+        Knight Knight= new Knight(coordinate, true, board, 2);
+        assertSame(board.GetPieceType(coordinate), EPieceType.KNIGHT);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.OUT_OF_PIECE_RANGE);
+    }
+
+    @Test
+    public void KnightMoveBlocked(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(1, 2);
+        Knight Knight= new Knight(coordinate, true, board, 2);
+        Pawn pawn2 = new Pawn(coordinate2, true, board, -1000);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.PLACE_ON_OWN_PIECE);
+    }
+
+    @Test
+    public void KnightMoveCapture(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(1, 2);
+        Knight Knight= new Knight(coordinate, true, board, 2);
+        Pawn pawn2 = new Pawn(coordinate2, false, board, -1000);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.KNIGHT);
+    }
+
+    @Test
+    public void KnightCheck(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(1, 2);
+        Knight Knight= new Knight(coordinate, true, board, 2);
+        King king2 = new King(coordinate2, false, board, 8);
+        assertSame(board.GetGameStatus(), EGameState.P2_IN_CHECK);
+    }
+
+
+    @Test
     public void BishopMoveUR(){
         coordinate = new Coordinate(0, 0);
         coordinate2 = new Coordinate(7, 7);
@@ -322,6 +361,7 @@ public class ChessBoardAdvancedTests {
         assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
         assertSame(board.GetPieceType(coordinate2), EPieceType.BISHOP);
     }
+
 
     @Test
     public void BishopMoveDR(){
