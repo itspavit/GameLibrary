@@ -111,6 +111,110 @@ public class ChessBoardAdvancedTests {
         assertSame(board.GetGameStatus(), EGameState.P2_IN_CHECK);
     }
 
+    @Test
+    public void RookMoveHorizontalR(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(7, 0);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.ROOK);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.ROOK);
+    }
+
+    @Test
+    public void RookMoveHorizontalL(){
+        coordinate = new Coordinate(7, 0);
+        coordinate2 = new Coordinate(0, 0);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.ROOK);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.ROOK);
+    }
+
+    @Test
+    public void RookMoveHorizontalU(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(0, 7);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.ROOK);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.ROOK);
+    }
+
+    @Test
+    public void RookMoveHorizontalD(){
+        coordinate = new Coordinate(0, 7);
+        coordinate2 = new Coordinate(0, 0);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.ROOK);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.ROOK);
+    }
+
+    @Test
+    public void RookMoveInvalid(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(7, 7);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        assertSame(board.GetPieceType(coordinate), EPieceType.ROOK);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.OUT_OF_PIECE_RANGE);
+    }
+
+    @Test
+    public void rookMoveBlocked(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 2);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        Pawn pawn2 = new Pawn(coordinate2, true, board, -1000);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.PLACE_ON_OWN_PIECE);
+    }
+
+    @Test
+    public void rookMoveBlocked2(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 2);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        Pawn pawn2 = new Pawn(coordinate2, true, board, -1000);
+        coordinate2 = new Coordinate(0, 7);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.OUT_OF_PIECE_RANGE);
+    }
+
+    @Test
+    public void RookMoveCapture(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 6);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        Pawn pawn2 = new Pawn(coordinate2, false, board, -1000);
+        board.AttemptMove(coordinate, coordinate2, true);
+        assertSame(board.GetPieceType(coordinate), EPieceType.NOTHING);
+        assertSame(board.GetPieceType(coordinate2), EPieceType.ROOK);
+    }
+
+    @Test
+    public void RookMoveBlockedBlack(){
+        coordinate = new Coordinate(0, 1);
+        coordinate2 = new Coordinate(0, 2);
+        Rook rook = new Rook(coordinate, true, board, -1000);
+        Pawn pawn2 = new Pawn(coordinate2, false, board, -1000);
+        coordinate2 = new Coordinate(0, 7);
+        assertSame(board.AttemptMove(coordinate, coordinate2, true), EMoveResult.OUT_OF_PIECE_RANGE);
+    }
+
+    @Test
+    public void RookCheck(){
+        coordinate = new Coordinate(0, 0);
+        coordinate2 = new Coordinate(0, 7);
+        Pawn pawn = new Pawn(coordinate, true, board, -1000);
+        King king2 = new King(coordinate2, false, board, 8);
+        assertSame(board.GetGameStatus(), EGameState.P2_IN_CHECK);
+    }
+
+
+
 
 
 }
