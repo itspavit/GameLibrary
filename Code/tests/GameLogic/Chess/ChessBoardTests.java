@@ -14,6 +14,9 @@ public class ChessBoardTests {
         board = new ChessBoard(true);
     }
 
+    /**
+     * test that the rooks are in the correct starting positions
+     */
     @Test
     public void testRook(){
         coordinate = new Coordinate(0, 0);
@@ -26,6 +29,9 @@ public class ChessBoardTests {
         assertEquals(EPieceType.ROOK, board.GetPieceType(coordinate));
     }
 
+    /**
+     * test that the knights are in the correct starting positions
+     */
     @Test
     public void testKnight(){
         coordinate = new Coordinate(1, 0);
@@ -38,6 +44,9 @@ public class ChessBoardTests {
         assertEquals(EPieceType.KNIGHT, board.GetPieceType(coordinate));
     }
 
+    /**
+     * test that the bishops are in the correct starting positions
+     */
     @Test
     public void testBishop(){
         coordinate = new Coordinate(2, 0);
@@ -50,6 +59,9 @@ public class ChessBoardTests {
         assertEquals(EPieceType.BISHOP, board.GetPieceType(coordinate));
     }
 
+    /**
+     * test that the Queens are in the correct starting positions
+     */
     @Test
     public void testQueen(){
         coordinate = new Coordinate(4, 0);
@@ -58,6 +70,9 @@ public class ChessBoardTests {
         assertEquals(EPieceType.QUEEN, board.GetPieceType(coordinate));
     }
 
+    /**
+     * test that the kings are in the correct starting positions
+     */
     @Test
     public void testKing(){
         coordinate = new Coordinate(3, 0);
@@ -66,6 +81,9 @@ public class ChessBoardTests {
         assertEquals(EPieceType.KING, board.GetPieceType(coordinate));
     }
 
+    /**
+     * test that the pawns are in the correct starting positions
+     */
     @Test
     public void testPawn(){
         for (int i = 0; i<= 7; i++){
@@ -76,6 +94,9 @@ public class ChessBoardTests {
         }
     }
 
+    /**
+     * test that there are no pieces in the places that should be empty
+     */
     @Test
     public void testNull(){
         for (int i = 0; i<= 7; i++){
@@ -86,6 +107,9 @@ public class ChessBoardTests {
         }
     }
 
+    /**
+     * test that there are no captured pieces before the game begins
+     */
     @Test
     public void testCapturesAtStart(){
         assertTrue(board.GetP1Captures() == 0);
@@ -211,5 +235,139 @@ public class ChessBoardTests {
         coordinate2 = new Coordinate(5, 7);
         assertTrue(board.AttemptMove(coordinate, coordinate2, true) == EMoveResult.OUT_OF_PIECE_RANGE);
     }
+
+    /**
+     * attempt to move a square with empty contents
+     */
+    @Test
+    public void AttemptMoveEmptySquare()
+    {
+
+    }
+
+    /**
+     * attempt to move to the same position as starting position
+     */
+    @Test
+    public void AttemptMoveStayInPlace()
+    {
+
+    }
+
+    /**
+     * attempt to move the other players piece
+     */
+    @Test
+    public void AttemptMoveOthersPiece()
+    {
+
+    }
+
+    /**
+     * Attempt to move onto an allied piece
+     */
+    @Test
+    public void AttemptMoveOnOwnPiece()
+    {
+
+    }
+
+    /**
+     * Attempt a valid move
+     */
+    @Test
+    public void AttemptValidMove()
+    {
+
+    }
+
+    /**
+     * Test promote pawn function with invalid promotion for cases: (pawn is not at the end of the board, both colors),
+     * (the selected piece is not a pawn, null and other)
+     */
+    @Test
+    public void InvalidPromotePawn()
+    {
+
+    }
+
+    /**
+     * Test promote pawn with valid promotion for both colors
+     */
+    @Test
+    public void ValidPromotePawn()
+    {
+
+    }
+
+    /**
+     * Test for game status when game is not over
+     */
+    @Test
+    public void GameNotOver()
+    {
+
+    }
+
+    /**
+     * Test for game status when draw by turns
+     */
+    @Test
+    public void AllowedTurnsExceeded()
+    {
+
+    }
+
+    /**
+     * Test for several draw scenarios
+     */
+    @Test
+    public void LayoutDraws()
+    {
+
+    }
+
+    /**
+     * Test for in check p1 and p2
+     */
+    @Test
+    public void InCheck()
+    {
+
+    }
+
+    /**
+     * Test for P1 wins
+     */
+    @Test
+    public void P1Wins()
+    {
+
+    }
+
+    /**
+     * test for P2 wins
+     */
+
+    @Test
+    public void P2Wins()
+    {
+
+    }
+
+    /**
+     * test the formatted output
+     */
+    @Test
+    public void FormattedBoard()
+    {
+
+    }
+
+
+
+
+
+
 
 }
