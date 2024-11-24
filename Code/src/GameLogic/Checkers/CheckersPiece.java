@@ -15,6 +15,9 @@ public abstract class CheckersPiece {
     }
     public abstract Boolean canMove(Coord destination);
     public  abstract EPieceTypes getType();
+    public boolean onPlayerTeam(){
+        return getType()==EPieceTypes.Player || getType()==EPieceTypes.PlayerKing;
+    }
 
     public ArrayList<CheckersPiece> getMoves() {
         return null;

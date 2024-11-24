@@ -1,8 +1,8 @@
-import GameLogic.Checkers.*;
+package GameLogic.Checkers;
 
 import java.util.Scanner;
 
-public class CheckersTest {
+public class ConsoleTest {
     public static void main(String[] args) {
         InputManager playerInput = new InputManager();
         NetInputManager netInput = new NetInputManager();

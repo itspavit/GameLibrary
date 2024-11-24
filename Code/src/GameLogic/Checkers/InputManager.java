@@ -10,17 +10,19 @@ public class InputManager {
 
     }
 
-    public void simulateInput(String str) {
+    public boolean simulateInput(String str) {
         if(str.length()!=5){
             System.out.println("invalid input:"+str);
-            return;
+            return false;
         }
         String start = str.substring(0,2);
         String end = str.substring(3,5);
         System.out.println("player input:"+str+" start:"+start+" end:"+end);
         if( !logic.playerMove(coordFromInput(start), coordFromInput(end))){
             System.out.println(str+" is not a playable move");
+            return false;
         }
+        return true;
     }
     private Coord coordFromInput(String s){
         int x = Integer.parseInt(String.valueOf(s.charAt(0)));

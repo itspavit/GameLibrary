@@ -6,8 +6,8 @@ public class CheckersGame {
     private InputManager playerInput;
     private NetInputManager opponentInput;
 
-    public CheckersGame(InputManager playerInput, NetInputManager opponentInput, CheckersGUI checkersGUI) {
-        logic = new CheckersLogic(ETurn.PLAYER);
+    public CheckersGame(InputManager playerInput, NetInputManager opponentInput, CheckersGUI checkersGUI, CheckersLogic logic) {
+        this.logic = logic;
         this.playerInput = playerInput;
         this.opponentInput = opponentInput;
         this.checkersGUI = checkersGUI;
@@ -15,8 +15,9 @@ public class CheckersGame {
         playerInput.addLogic(logic);
         opponentInput.addLogic(logic);
         checkersGUI.addLogic(logic);
-
-
+    }
+    public CheckersGame(InputManager playerInput, NetInputManager opponentInput, CheckersGUI checkersGUI) {
+        this(playerInput, opponentInput, checkersGUI, new CheckersLogic(ETurn.PLAYER));
     }
 
     public void reset() {
@@ -30,6 +31,8 @@ public class CheckersGame {
 
     public void recieveMessage(String message) {
     }
+
+
 
 
 }

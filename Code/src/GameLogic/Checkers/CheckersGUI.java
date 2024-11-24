@@ -42,13 +42,14 @@ public class CheckersGUI {
 
         String output = "  0 1 2 3 4 5 6 7 \n";
         for (int x = 0; x < 8; x++) {
-            String line = x + "|";
+            String line = x + " ";
             for (int y = 0; y < 8; y++) {
                 line += board[x][y]+" ";
             }
-            line+="\n";
+            line+=x+"\n";
             output+=line;
         }
+        output += "  0 1 2 3 4 5 6 7";
         System.out.println(output);
     }
 
