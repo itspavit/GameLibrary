@@ -146,7 +146,7 @@ public class CheckersLogic {
      * @return
      */
     private boolean canJump(CheckersPiece piece, Coord dest) {
-        if(dest.x>7 || dest.y>7 || dest.x<0 || dest.y<0) {
+        if(getPiece(dest)!=null || dest.x>7 || dest.y>7 || dest.x<0 || dest.y<0) {
             return  false;
         }
         Coord pos = piece.getPosition();
@@ -167,14 +167,8 @@ public class CheckersLogic {
             System.out.println("there is no piece to jump at " + jumpLoc);
             return false;
         }
-        // the player can't jump their own pieces
-        if ((piece.getType() == EPieceTypes.Player || piece.getType() == EPieceTypes.PlayerKing)
-                && (jumpedPiece.getType() == EPieceTypes.Player || jumpedPiece.getType() == EPieceTypes.PlayerKing)) {
-            return false;
-        }
-        // neither can the opponent
-        if ((piece.getType() == EPieceTypes.Opponent || piece.getType() == EPieceTypes.OpponentKing)
-                && (jumpedPiece.getType() == EPieceTypes.Opponent || jumpedPiece.getType() == EPieceTypes.OpponentKing)) {
+        // you can't jump a piece on the same team
+        if (piece.onPlayerTeam() == jumpedPiece.onPlayerTeam()) {
             return false;
         }
 

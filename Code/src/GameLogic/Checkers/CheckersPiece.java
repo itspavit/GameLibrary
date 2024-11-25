@@ -19,7 +19,7 @@ public abstract class CheckersPiece {
         return getType()==EPieceTypes.Player || getType()==EPieceTypes.PlayerKing;
     }
 
-    public ArrayList<CheckersPiece> getMoves() {
+    public ArrayList<Coord> getMoves() {
         return null;
     }
 
