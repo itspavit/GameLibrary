@@ -99,9 +99,6 @@ public class BasicRules {
         assertFalse(netInput.simulateInput("33 44"));
         assertFalse(netInput.simulateInput("44 55"));
         checkersGUI.drawBoard();
-        assertTrue(netInput.simulateInput("33 24"));
-        checkersGUI.drawBoard();
-
     }
     @Test
     public void ownPieces() {

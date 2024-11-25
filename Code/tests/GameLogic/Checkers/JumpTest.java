@@ -23,11 +23,32 @@ public class JumpTest {
 
         checkersGUI.drawBoard();
 
-        assertFalse(playerInput.simulateInput("77 66"));
-        checkersGUI.drawBoard();
         assertTrue(playerInput.simulateInput("44 22"));
         checkersGUI.drawBoard();
+        assertFalse(netInput.simulateInput("33 24"));
+        assertTrue(netInput.simulateInput("00 11"));
+        checkersGUI.drawBoard();
     }
+    @Test
+    public void forceJump() {
+        ArrayList<CheckersPiece> pieces = new ArrayList<>();
+        pieces.add(new PlayerPiece(1,3));
+        pieces.add(new PlayerPiece(6,4));
+        pieces.add(new OpponentPiece(2,4));
+        pieces.add(new OpponentPiece(5,3));
+        CheckersLogic logic = new CheckersLogic(ETurn.PLAYER, pieces);
+        CheckersGame game = new CheckersGame(playerInput, netInput, checkersGUI, logic);
+
+        checkersGUI.drawBoard();
+
+        assertFalse(playerInput.simulateInput("13 22"));
+        checkersGUI.drawBoard();
+        assertTrue(playerInput.simulateInput("64 42"));
+        checkersGUI.drawBoard();
+        assertTrue(netInput.simulateInput("24 35"));
+        checkersGUI.drawBoard();
+    }
+
 
     @Test
     public void kingJump() {

@@ -41,9 +41,14 @@ public abstract class CheckersPiece {
     }
     public boolean doMove(Coord dest){
         if(canMove(dest)){
-            if(Math.abs(position.sub(dest).x)==2){
-                System.out.println("imagine a jump to "+dest);
-           // TODO: jump
+            Coord change = dest.sub(position);
+            // removing the piece if they jump
+            if(Math.abs(change.x)==2){
+                CheckersPiece piece = logic.getPiece(position.add(change.div(2)));
+                System.out.println("before jump:"+logic.getPieces());
+                System.out.println("removing :"+piece+ "at "+position.add(change.div(2)));
+                logic.getPieces().remove(piece);
+                System.out.println("after jump:"+logic.getPieces());
             }
             position = dest;
             return  true;
@@ -88,18 +93,18 @@ public abstract class CheckersPiece {
      * @param dest this is assumed to be 2 places diagonally away from the piece in a direction it can move
      * @return if the piece can move to the given spot
      */
-    private boolean canJump(Coord dest) {
-        if (dest.x > 7 || dest.y > 7 || dest.x < 0 || dest.y < 0) {
+    protected boolean canJump(Coord dest) {
+        if (logic.getPiece(dest)!=null ||dest.x > 7 || dest.y > 7 || dest.x < 0 || dest.y < 0) {
             return false;
         }
         // calculate the location of the jumped piece (pos + (movement/2))
         Coord jumpedLoc = position.add(dest.sub(position).div(2));
         CheckersPiece jumpedPiece = logic.getPiece(jumpedLoc);
-        return jumpedPiece != null && jumpedPiece.onPlayerTeam() != logic.getPiece(jumpedLoc).onPlayerTeam();
+        return jumpedPiece != null && jumpedPiece.onPlayerTeam() != onPlayerTeam();
 
     }
 
-    private boolean canJump() {
+    protected  boolean canJump() {
         // check all diagonals by default (king jump logic)
         int x = position.x;
         int y = position.y;
@@ -115,5 +120,10 @@ public abstract class CheckersPiece {
 
     public void setPosition(Coord position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return getType()+":"+position;
     }
 }

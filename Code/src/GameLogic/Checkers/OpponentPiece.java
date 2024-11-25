@@ -19,6 +19,16 @@ public class OpponentPiece extends  CheckersPiece{
         return super.canMove(dest);
     }
 
+
+    @Override
+    protected boolean canJump() {
+        // check all diagonals by default (king jump logic)
+        int x = position.x;
+        int y = position.y;
+        return (canJump( new Coord(x - 2, y + 2)) ||
+                canJump( new Coord(x + 2, y + 2))) ;
+    }
+
     @Override
     public EPieceTypes getType() {
         return EPieceTypes.Opponent;
