@@ -51,8 +51,11 @@ public class CheckersLogic {
         }
         boolean success = piece.doMove(dest);
         if (success) {
-            // TODO: don't switch turns if you can double jump
+            Coord change = dest.sub(start);
             turn = ETurn.OPPONENT;
+            if(Math.abs(change.x)==2 && piece.canJump()){
+                turn = ETurn.PLAYER;
+            }
         }
         return success;
     }
@@ -70,8 +73,11 @@ public class CheckersLogic {
         }
         boolean success = piece.doMove(dest);
         if (success) {
-            // TODO: don't switch turns if you can double jump
-            turn = ETurn.OPPONENT;
+            Coord change = dest.sub(start);
+            turn = ETurn.PLAYER;
+            if(Math.abs(change.x)==2 && piece.canJump()){
+                turn = ETurn.OPPONENT;
+            }
         }
         return success;
     }

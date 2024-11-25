@@ -51,6 +51,7 @@ public abstract class CheckersPiece {
                 System.out.println("after jump:"+logic.getPieces());
             }
             position = dest;
+
             return  true;
         }
         return false;
