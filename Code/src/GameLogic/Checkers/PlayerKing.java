@@ -8,12 +8,6 @@ public class PlayerKing extends  CheckersPiece{
     public PlayerKing(int x, int y) {
         super(x, y);
     }
-
-    @Override
-    public Boolean canMove(Coord destination) {
-        return null;
-    }
-
     @Override
     public EPieceTypes getType() {
         return EPieceTypes.PlayerKing;

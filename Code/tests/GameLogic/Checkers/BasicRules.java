@@ -98,7 +98,8 @@ public class BasicRules {
         assertTrue(playerInput.simulateInput("66 75"));
         assertFalse(netInput.simulateInput("33 44"));
         assertFalse(netInput.simulateInput("44 55"));
-        assertTrue(netInput.simulateInput("44 66"));
+        checkersGUI.drawBoard();
+        assertTrue(netInput.simulateInput("33 24"));
         checkersGUI.drawBoard();
 
     }

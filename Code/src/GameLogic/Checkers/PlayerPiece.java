@@ -10,8 +10,12 @@ public class PlayerPiece extends  CheckersPiece{
     }
 
     @Override
-    public Boolean canMove(Coord destination) {
-        return null;
+    public boolean canMove(Coord dest) {
+        if ( position.y < dest.y) {
+            System.out.println("normal piece can't move backwards");
+            return false;
+        }
+        return super.canMove(dest);
     }
 
     @Override

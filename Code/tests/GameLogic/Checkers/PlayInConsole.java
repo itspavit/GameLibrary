@@ -2,6 +2,9 @@ package GameLogic.Checkers;
 
 import java.util.Scanner;
 
+/**
+ * this just lets you test the game out by playing it the debug console!
+ */
 public class PlayInConsole {
     public static void main(String[] args) {
         InputManager playerInput = new InputManager();

@@ -15,6 +15,9 @@ public class CheckersLogic {
     public CheckersLogic(ETurn turn, ArrayList<CheckersPiece> pieces) {
         this.turn = turn;
         this.pieces = pieces;
+        for(CheckersPiece p : pieces){
+            p.addGameLogic(this);
+        }
     }
 
     public CheckersLogic(ETurn turn) {
@@ -26,7 +29,9 @@ public class CheckersLogic {
             pieces.add(new OpponentPiece(i + 1, 1));
             pieces.add(new OpponentPiece(i, 0));
         }
-
+        for(CheckersPiece p : pieces){
+            p.addGameLogic(this);
+        }
     }
 
     public synchronized boolean playerMove(Coord start, Coord dest) {
@@ -41,35 +46,22 @@ public class CheckersLogic {
             System.out.println("can't move opponent pieces");
             return false;
         }
-        // normal pieces can't move backwards (smaller y location)
-        if (piece.getType() == EPieceTypes.Player && start.y < dest.y) {
-            System.out.println("normal pices can't move backwards");
-            return false;
-        }
-        if (doGeneralRules(start, dest, true)) {
-            turn = ETurn.OPPONENT;
-            return true;
-        }
-        return false;
+    return    piece.doMove(dest);
     }
 
     public synchronized boolean opponentMove(Coord start, Coord dest) {
+        System.out.println("aaaaaa");
         CheckersPiece piece = getPiece(start);
         if (turn == ETurn.PLAYER) {
-            return false;
+        //    return false;
         }
+        System.out.println("aaaaaa");
         if (piece.getType() != EPieceTypes.Opponent && piece.getType() != EPieceTypes.OpponentKing) {
             return false;
         }
-        if (piece.getType() == EPieceTypes.Opponent && start.y > dest.y) {
-            System.out.println("normal pices can't move backwards");
-            return false;
-        }
-        if (doGeneralRules(start, dest, false)) {
-            turn = ETurn.PLAYER;
-            return true;
-        }
-        return false;
+        boolean x = piece.doMove(dest);
+        System.out.println("success:"+x);
+        return x;
     }
 
     /**
@@ -176,6 +168,15 @@ public class CheckersLogic {
         System.out.println("jumping " + jumpedPiece.getType() + " at " + jumpLoc);
         pieces.remove(jumpedPiece);
         return true;
+    }
+
+    public ArrayList<Coord> getPlayerMoves(){
+        return  null;
+
+    }
+    public ArrayList<Coord> getOpponentsMoves(){
+        return  null;
+
     }
 
     public CheckersPiece getPiece(Coord location) {

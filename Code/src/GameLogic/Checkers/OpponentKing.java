@@ -12,11 +12,6 @@ public class OpponentKing extends  CheckersPiece{
     }
 
     @Override
-    public Boolean canMove(Coord destination) {
-        return null;
-    }
-
-    @Override
     public EPieceTypes getType() {
         return EPieceTypes.OpponentKing;
     }
