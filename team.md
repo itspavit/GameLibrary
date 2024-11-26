@@ -16,8 +16,7 @@
 |Tania Rizwan           | 30115533  |  
 |Guanhua Huang          | 30138233  |  
 |Prajnya Moola          | 30182604  |  
-|Saad Zafar Khan        | 30258277  |  
-|Ivan Chen              | 30231504  |
+|Saad Zafar Khan        | 30258277  |
 |Alex Zhou              | 30176165  |
 |Kiyan Merali           | 30209183  |  
 |Pavitpal Singh Bhagat  | 30177873  |  
