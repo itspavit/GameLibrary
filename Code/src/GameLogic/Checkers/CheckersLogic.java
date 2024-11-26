@@ -53,6 +53,7 @@ public class CheckersLogic {
         if (success) {
             Coord change = dest.sub(start);
             turn = ETurn.OPPONENT;
+            // its still your turn if you can double jump
             if(Math.abs(change.x)==2 && getPiece(dest).canJump()){
                 turn = ETurn.PLAYER;
             }

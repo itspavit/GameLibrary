@@ -52,15 +52,21 @@ public class JumpTest {
     @Test
     public void doubleJump() {
         ArrayList<CheckersPiece> pieces = new ArrayList<>();
-        pieces.add(new PlayerPiece(7,7));
         pieces.add(new PlayerPiece(4,4));
         pieces.add(new OpponentPiece(3,3));
+        pieces.add(new OpponentPiece(3,1));
         pieces.add(new OpponentPiece(0,0));
+        pieces.add(new PlayerPiece(3,7));
+        pieces.add(new OpponentPiece(2,6));
         CheckersLogic logic = new CheckersLogic(ETurn.PLAYER, pieces);
         CheckersGame game = new CheckersGame(playerInput, netInput, checkersGUI, logic);
 
         checkersGUI.drawBoard();
 
-        //TODO: multijumps test
+        assertTrue(playerInput.simulateInput("44 22"));
+        assertTrue(playerInput.simulateInput("22 40"));
+        assertFalse(netInput.simulateInput("33 44"));
+        assertTrue(netInput.simulateInput("00 11"));
+        checkersGUI.drawBoard();
     }
 }
