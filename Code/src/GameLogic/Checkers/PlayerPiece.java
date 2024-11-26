@@ -10,6 +10,18 @@ public class PlayerPiece extends  CheckersPiece{
     }
 
     @Override
+    public boolean doMove(Coord dest) {
+        boolean result = super.doMove(dest);
+        if(result && dest.y==0){
+            PlayerKing king = new PlayerKing(dest);
+            king.addGameLogic(logic);
+            logic.getPieces().remove(this);
+            logic.getPieces().add(king);
+        }
+        return result;
+    }
+
+    @Override
     public boolean canMove(Coord dest) {
         if ( position.y < dest.y) {
             System.out.println("normal piece can't move backwards");

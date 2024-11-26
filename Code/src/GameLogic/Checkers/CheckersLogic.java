@@ -53,7 +53,7 @@ public class CheckersLogic {
         if (success) {
             Coord change = dest.sub(start);
             turn = ETurn.OPPONENT;
-            if(Math.abs(change.x)==2 && piece.canJump()){
+            if(Math.abs(change.x)==2 && getPiece(dest).canJump()){
                 turn = ETurn.PLAYER;
             }
         }

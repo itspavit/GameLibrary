@@ -10,6 +10,17 @@ public class OpponentPiece extends  CheckersPiece{
     }
 
     @Override
+    public boolean doMove(Coord dest) {
+        boolean result = super.doMove(dest);
+        if(result && dest.y==7){
+            OpponentKing king = new OpponentKing(dest);
+            king.addGameLogic(logic);
+            logic.getPieces().remove(this);
+            logic.getPieces().add(king);
+        }
+        return result;
+    }
+    @Override
     public boolean canMove(Coord dest) {
 
         if ( position.y >= dest.y) {

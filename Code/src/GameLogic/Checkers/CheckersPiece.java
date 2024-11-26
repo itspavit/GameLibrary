@@ -45,13 +45,10 @@ public abstract class CheckersPiece {
             // removing the piece if they jump
             if(Math.abs(change.x)==2){
                 CheckersPiece piece = logic.getPiece(position.add(change.div(2)));
-                System.out.println("before jump:"+logic.getPieces());
-                System.out.println("removing :"+piece+ "at "+position.add(change.div(2)));
                 logic.getPieces().remove(piece);
                 System.out.println("after jump:"+logic.getPieces());
             }
             position = dest;
-
             return  true;
         }
         return false;
