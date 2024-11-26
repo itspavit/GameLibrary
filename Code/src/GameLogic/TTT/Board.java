@@ -1,3 +1,5 @@
+package GameLogic.TTT;
+
 public class Board {
     private char[][] grid;      //the 2D gameboard array
     //private because we don't want it modified at all
