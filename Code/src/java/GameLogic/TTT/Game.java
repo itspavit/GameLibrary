@@ -19,7 +19,7 @@ public class Game {
         int input = scanner.nextInt();
 
         if (input < 0 || input > 2) {
-            throw new InvalidMoveException("Invalid move, must choose a number from 0-2");
+            throw new InvalidMoveException("Invalid move, must choose a number from 0-2.");
         }
         return input;
     }
@@ -67,7 +67,7 @@ public class Game {
                     System.out.println("Invalid move, position already taken");
                 }
             } catch (InvalidMoveException e) {
-                System.out.println("Error: " + e.getMessage() + "Please try again.");
+                System.out.println("Error: " + e.getMessage() + "\n" + "Please try again.");
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Error please try again.");
                 scanner.next();
